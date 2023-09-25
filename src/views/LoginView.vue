@@ -2,7 +2,8 @@
 import { ref } from 'vue';
 import { RouterLink } from "vue-router";
 
-<template></template>
+// Define a reactive property to track the password visibility
+const passwordVisible = ref(false);
 
 // Function to toggle password visibility
 function togglePassword() {

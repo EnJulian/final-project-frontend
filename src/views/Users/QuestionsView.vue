@@ -1,16 +1,5 @@
 <script setup>
 import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
-import { ref, computed, watch, onBeforeUnmount } from 'vue';
-
-const questions = {
-    name: "how old are you",
-    solve: {
-        q1: "hey there",
-        q2: "i am here",
-        q3: "appuuu",
-        q4: "apppppp"
-    }
-}
 
 </script>
 

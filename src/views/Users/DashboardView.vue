@@ -41,9 +41,7 @@ import { RouterLink } from 'vue-router'
                     <p>
                         We have 5 days left until the next assessment Watch this space
                     </p>
-                    <p>
-                        You can now take the Assessment
-                    </p>
+                    
                     <div>
                         <button disabled>
                             <RouterLink class="links" to="/assessment">Take Assessment</RouterLink>
@@ -57,10 +55,12 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .container {
-    font-family: 'Lato';
+    
     display: flex;
     flex-direction: column;
     gap: 65px;
+    font-family: 'Lato';
+   
 }
 
 .applicant-info {
@@ -72,9 +72,10 @@ import { RouterLink } from 'vue-router'
     color: #4F4F4F;
     font-family: 'Lato';
     font-size: 14px;
+    
+    line-height: normal;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
 }
 
 .date {
@@ -86,10 +87,11 @@ import { RouterLink } from 'vue-router'
 .text {
     color: #2B3C4E;
     font-family: 'Lato';
+    line-height: normal;
+    font-weight: 300;
     font-size: 48px;
     font-style: normal;
-    font-weight: 300;
-    line-height: normal;
+    
 }
 
 h6 {
@@ -99,21 +101,25 @@ h6 {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    
+    
 }
 
 .line {
     width: 148px;
     height: 4px;
+     margin-top: 8px;
     border-radius: 4px;
     background: #006DF0;
-    margin-top: 8px;
+   
 }
 
 .yellow {
+    background: #F09000;
     width: 148px;
     height: 4px;
     border-radius: 4px;
-    background: #F09000;
+    
 }
 
 .cards {
@@ -125,12 +131,13 @@ h6 {
 .card {
     width: 482px;
     height: 453px;
-    border-radius: 4px;
-    border: 1px solid #ECECF9;
-    padding: 34px;
     display: flex;
     flex-direction: column;
     gap: 87px;
+    border-radius: 4px;
+    border: 1px solid #ECECF9;
+    padding: 34px;
+    
 }
 
 .card-title {
@@ -151,8 +158,9 @@ h6 {
 }
 
 hr {
-    border: 1px solid #cecece;
     background: #cecece;
+    border: 1px solid #cecece;
+   
 }
 
 .card-assessment {
@@ -160,8 +168,9 @@ hr {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
     margin-top: 50px;
+    gap: 24px;
+    
 }
 
 .links {
@@ -179,10 +188,11 @@ p {
     text-align: center;
     font-family: 'Lato';
     font-size: 16.727px;
+    max-width: 343px;
+    width: 100%;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    max-width: 343px;
-    width: 100%;
+    
 }
 </style>

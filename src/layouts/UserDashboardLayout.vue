@@ -4,18 +4,18 @@ const route = useRoute();
 </script>
 
 <template>
-  <div class="layout">
+  <div class="layoutPart">
     <div class="sidebar">
-      <div class="sidenav">
-        <div class="profile">
+      <div class="sideNavigation">
+        <div class="profilePart">
           <img class="profile-img" src="@/assets/icons/leftbanner.png" alt="profile picture" />
           <div class="details">
             <h1 class="profile-name">Andy Cole</h1>
-            <p mailto:class="profile-mail">cole@gmal.com</p>
+            <p mailto:class="profile-gmail">cole@gmail.com</p>
           </div>
         </div>
 
-        <div class="sidenav-links">
+        <div class="sideNavigation-links">
           <RouterLink class="links" :to="{ name: 'dashboard' }" active-class="active">
             <div class="icons"><img src="@/assets/icons/dashboardicon.svg" alt="" /></div>
             <p class="link-text">Dashboard</p>
@@ -41,34 +41,37 @@ const route = useRoute();
 
 
 <style scoped>
-.layout {
+.sideNavigation {
+  
+  width: 292px;
+  height: 100vh;
+  font-family: 'Lato';
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+  
+}
+.layoutPart {
   display: flex;
 }
 
-.sidenav {
-  font-family: 'Lato';
-  width: 292px;
-  height: 100vh;
-  background: #ffffff;
-  box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
-  border-radius: 8px;
-}
 
 
-.profile {
+
+.profilePart {
   background: #7557D3;
   height: 255px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 13px;
+  align-items: center;
   color: #fff;
 }
 
 .profile-img {
-  border-radius: 80px;
   width: 80px;
+  border-radius: 80px;
   height: 80px;
 }
 
@@ -76,20 +79,22 @@ const route = useRoute();
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  
   gap: 5px;
+  align-items: center;
 }
 
 .profile-name {
-  color: #FFF;
   font-family: 'Lato';
+  
+  color: #FFF;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   letter-spacing: -0.4px;
 }
 
-.profile-mail {
+.profile-gmail {
   color: #FFF;
   font-family: Lato;
   font-size: 16px;
@@ -98,47 +103,49 @@ const route = useRoute();
   letter-spacing: -0.32px;
 }
 
-.sidenav-links {
+.sideNavigation-links {
   display: flex;
   flex-direction: column;
-  gap: 28px;
   padding: 45px;
+  gap: 28px;
+  
 }
 
 .links {
   display: flex;
   gap: 21px;
   align-items: center;
-  text-decoration: none;
-  color: #2B3C4E;
-  text-align: center;
   font-family: 'Lato';
   font-size: 16px;
   font-weight: 400;
+  text-decoration: none;
+  color: #2B3C4E;
+  text-align: center;
+  
   line-height: normal;
 }
 
 .icons {
+ height: 15.789px;
   width: 12px;
-  height: 15.789px;
 }
 
 .logout {
   margin-top: 32px;
 }
-
-.active {
-  color: #2B3C4E;
-  text-align: center;
-  font-family: 'Lato';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-}
-
 .rightContent {
   padding: 102px 47px;
+} 
+.active {
+  font-family: 'Lato';
+  font-size: 16px;
+  color: #2B3C4E;
+  text-align: center;
+  font-weight: 700;
+  font-style: normal;
+ 
 }
+
+
 </style>
 
-this goes into your userDashboardlayout

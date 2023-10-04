@@ -18,6 +18,7 @@ import ComposeAssessView from "../views/admin/ComposeAssessView.vue";
 import AssessHistoryView from "../views/admin/AssessHistoryView.vue";
 import AssessResultsView from "../views/admin/AssessResultsView.vue";
 import SettingsView from "../views/admin/SettingsView.vue";
+import AdminLoginView from "../views/admin/AdminLoginView.vue";
 
 
 
@@ -44,6 +45,8 @@ const router = createRouter({
       name: "application",
       component: ApplicationView,
     },
+
+
     /*
      * USER ROUTES
      */
@@ -74,6 +77,7 @@ const router = createRouter({
         },
       ],
     },
+    
     /*
      * ADMIN ROUTES
      */
@@ -135,7 +139,14 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: "/adminlogin",
+      name: "adminlogin",
+      component: AdminLoginView
+    },
   ],
+
+  
 });
 
 export default router;

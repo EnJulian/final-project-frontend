@@ -33,5 +33,7 @@ const props = defineProps(["cardTitle", "cardText"]);
     font-style: italic;
     font-weight: 500;
     line-height: normal;
+    max-width: 600px;
+    width: 100%;
 }
 </style>

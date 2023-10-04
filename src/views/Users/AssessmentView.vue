@@ -85,8 +85,9 @@
         color: #fff;
     }
 
-    button {
+<style scoped>
+ button {
         background-color: #B1B1B1;
         padding: 10px 40px;
     }
-</style>
+</style> 

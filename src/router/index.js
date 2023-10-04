@@ -18,6 +18,7 @@ import ComposeAssessView from "../views/admin/ComposeAssessView.vue";
 import AssessHistoryView from "../views/admin/AssessHistoryView.vue";
 import AssessResultsView from "../views/admin/AssessResultsView.vue";
 import SettingsView from "../views/admin/SettingsView.vue";
+import AdminLoginView from "../views/admin/AdminLoginView.vue";
 
 
 
@@ -44,6 +45,8 @@ const router = createRouter({
       name: "application",
       component: ApplicationView,
     },
+
+
     /*
      * USER ROUTES
      */
@@ -74,6 +77,7 @@ const router = createRouter({
         },
       ],
     },
+    
     /*
      * ADMIN ROUTES
      */
@@ -89,53 +93,60 @@ const router = createRouter({
           
         },
         {
-          path: "signup",
+          path: "/signup",
           name: "signup",
           component: SignupView
         },
         {
-          path: "adminDashboard",
+          path: "/adminDashboard",
           name: "AdminDashboard",
           component: AdminDashboardView
         },
         {
-          path: "create-application",
+          path: "/create-application",
           name: "creatapp",
           component: CreateAppView
         },
         {
-          path: "application-entries",
+          path: "/application-entries",
           name: "applicationentries",
           component: ApplicationEntriesView
         },
         {
-          path: "compose-assessment",
+          path: "/compose-assessment",
           name: "composeassessment",
           component: ComposeAssessView
         },
         {
-          path: "create-application",
+          path: "/create-application",
           name: "creatapp",
           component: CreateAppView
         },
         {
-          path: "assessment-history",
+          path: "/assessment-history",
           name: "assessmentHistory",
           component: AssessHistoryView
         },
         {
-          path: "assessment-result",
+          path: "/assessment-result",
           name: "assessmentResult",
           component: AssessResultsView
         },
         {
-          path: "profile-settings",
+          path: "/profile-settings",
           name: "settings",
           component: SettingsView
         },
       ],
     },
+    {
+      path: "/adminlogin",
+      name: "adminlogin",
+      component: AdminLoginView
+    },
   ],
+
+  
 });
 
 export default router;

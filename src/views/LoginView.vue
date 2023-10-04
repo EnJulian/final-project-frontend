@@ -48,7 +48,7 @@ function togglePassword() {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 225px;
+    justify-content: center;
     gap: 24px;
     padding-bottom: 69px;
 }
@@ -127,6 +127,7 @@ button {
     line-height: normal;
     background: #7557D3;
     border: none;
+    cursor: pointer;
 }
 
 .btn-text {

@@ -102,7 +102,7 @@ const createUser = async () => {
 
 <template>
     <div class="container">
-        <FormHeaderComponent titles="Form" />
+        <FormHeaderComponent titles="Application Form" />
         <div class="form-container">
             <div class="server-error" v-show="error"> {{ error }} </div>
             <div class="loader" v-if="loading"></div>

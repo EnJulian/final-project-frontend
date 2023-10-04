@@ -11,7 +11,7 @@ const route = useRoute();
           <img class="profile-img" src="@/assets/icons/leftbanner.png" alt="profile picture" />
           <div class="details">
             <h1 class="profile-name">Andy Cole</h1>
-            <p mailto:class="profile-gmail">cole@gmail.com</p>
+            <p class="profile-gmail">cole@gmail.com</p>
           </div>
         </div>
 
@@ -96,7 +96,7 @@ const route = useRoute();
 
 .profile-gmail {
   color: #FFF;
-  font-family: Lato;
+  font-family: 'Lato';
   font-size: 16px;
   font-style: italic;
   font-weight: 400;

@@ -52,7 +52,8 @@ const route = useRoute();
   
 }
 .layoutPart {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 11fr;
 }
 
 
@@ -94,7 +95,7 @@ const route = useRoute();
   letter-spacing: -0.4px;
 }
 
-.profile-gmail {
+.profile-mail {
   color: #FFF;
   font-family: 'Lato';
   font-size: 16px;
@@ -134,7 +135,7 @@ const route = useRoute();
   margin-top: 32px;
 }
 .rightContent {
-  padding: 102px 47px;
+  padding: 80px 47px;
 } 
 .active {
   font-family: 'Lato';

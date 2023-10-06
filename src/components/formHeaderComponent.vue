@@ -5,7 +5,7 @@ defineProps(['titles'])
 <template>
     <div class="header">
         <img class="logo" src="../assets/icons/logo.png" alt="logo" />
-        <h2 class="title">Application {{ titles }}</h2>
+        <h2 class="title">{{ titles }}</h2>
     </div>
 </template>
 

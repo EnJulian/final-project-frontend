@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from "vue-router";
+import FormHeaderComponent from '../components/formHeaderComponent.vue';
 
 // Define a reactive property to track the password visibility
 const passwordVisible = ref(false);
@@ -15,6 +16,7 @@ function togglePassword() {
 <template>
   <section>
     <div class="main">
+        <FormHeaderComponent titles="Applicatant Sign up"/>
       <div class="title">
         <img class="logo" src="../assets/icons/small_logo.svg" />
         <h3>Application Form</h3>

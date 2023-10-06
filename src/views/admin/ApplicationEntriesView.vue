@@ -1,16 +1,63 @@
-<template>
-  <ModalComponent @approve="openApproveButton" @decline="openDenyButton" @close="closeModal" v-show="mainModalVisibility" class="main-modal" />
-  <DeclineModalComponent @close="closeDecisionModal" v-show="declineVisibility" class="deny-decision" />
-  <ApproveModalComponent @close="closeDecisionModal" v-show="approveVisibility" class="approve-decision" />
-  
-      <div class="main">
-        <h1>
-          Entries - Batch 1 <img src="@/assets/entries-logo.svg" alt="logo" />
-        </h1>
-        <h2>Comprises of all that applied for batch 1</h2>
+<script setup>
+import { ref, computed } from 'vue';
+import ModalComponent from '../../components/ModalComponent.vue';
+import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
 
-        <table>
-            <thead>
+const openmodal = ref(false);
+
+const openMainModal = () => {
+    openmodal.value = true;
+};
+
+const openDenyButton = () => {
+    openmodal.value = false;
+    declineVisibility.value = true;
+};
+
+const openApproveButton = () => {
+    openmodal.value = false;
+    approveVisibility.value = true;
+};
+
+const closeModal = () => {
+    openmodal.value = false;
+};
+
+const people = ref([
+    { id: 1, name: 'jack jack', age: 12, email: 'jack@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 2.54 },
+    { id: 2, name: 'Bongo', age: 13, email: 'bongo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.54 },
+    { id: 3, name: 'congo', age: 14, email: 'congo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.24 },
+]);
+
+const sortedPeople = computed(() => {
+    return [...people.value].sort((a, b) => a.age - b.age || a.cgpa - b.cgpa);
+});
+
+const ageAscending = () => {
+    people.value.sort((a, b) => a.age - b.age || a.cgpa - b.cgpa);
+};
+const ageDescending = () => {
+    people.value.sort((a, b) => b.age - a.age || b.cgpa - a.cgpa);
+};
+
+const cgpaAscending = () => {
+    people.value.sort((a, b) => a.cgpa - b.cgpa || a.age - b.age);
+};
+const cgpaDescending = () => {
+    people.value.sort((a, b) => b.cgpa - a.cgpa || b.age - a.age);
+};
+</script>
+
+<template>
+  <ModalComponent @close="closeModal" v-show="openmodal" class="main-modal" />
+  
+  <DashboardTitleComponent 
+      cardTitle="Entries - Batch 1"
+      cardText="Comprises of all that applied for batch 1"
+  />
+      
+        <table style="width: 100%">
+            <thead >
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
@@ -43,67 +90,9 @@
                 </tr>
             </tbody>
         </table>
-      </div>
+    
 
 </template>
-
-<script setup>
-import { ref, computed } from 'vue';
-import ApproveModalComponent from '../../components/ApproveModalComponent.vue'
-import DeclineModalComponent from '../../components/DeclineModalComponent.vue'
-import ModalComponent from '../../components/ModalComponent.vue'
-
-const mainModalVisibility = ref(false);
-const declineVisibility = ref(false);
-const approveVisibility = ref(false);
-
-const openMainModal = () => {
-    mainModalVisibility.value = true;
-};
-
-const openDenyButton = () => {
-    mainModalVisibility.value = false;
-    declineVisibility.value = true;
-};
-
-const openApproveButton = () => {
-    mainModalVisibility.value = false;
-    approveVisibility.value = true;
-};
-
-const closeModal = () => {
-    mainModalVisibility.value = false;
-};
-
-const closeDecisionModal = () => {
-    approveVisibility.value = false;
-    declineVisibility.value = false;
-};
-
-const people = ref([
-    { id: 1, name: 'jack jack', age: 12, email: 'jack@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 2.54 },
-    { id: 2, name: 'Bongo', age: 13, email: 'bongo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.54 },
-    { id: 3, name: 'congo', age: 14, email: 'congo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.24 },
-]);
-
-const sortedPeople = computed(() => {
-    return [...people.value].sort((a, b) => a.age - b.age || a.cgpa - b.cgpa);
-});
-
-const ageAscending = () => {
-    people.value.sort((a, b) => a.age - b.age || a.cgpa - b.cgpa);
-};
-const ageDescending = () => {
-    people.value.sort((a, b) => b.age - a.age || b.cgpa - a.cgpa);
-};
-
-const cgpaAscending = () => {
-    people.value.sort((a, b) => a.cgpa - b.cgpa || a.age - b.age);
-};
-const cgpaDescending = () => {
-    people.value.sort((a, b) => b.cgpa - a.cgpa || b.age - a.age);
-};
-</script>
 
 
 <style scoped>
@@ -135,14 +124,21 @@ h2 {
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  /* / max-width: 1000px; / */
+  /* max-width:1042px;  */
+   width:100%;
+   margin-top: 38px;
   text-align: justify;
+  /* border: #7557D3 solid 10px; */
+  
+  
 }
 
 thead{
     background-color: #2B3C4E;
     color: #fff;
     padding: 8px;
+   
 }
 th{
     color: #fff;
@@ -166,6 +162,7 @@ img {
   border-radius: 8px;
     background: #FFF;
     box-shadow: 0px 5px 15px 0px rgba(33, 31, 38, 0.05);
+    border-radius: 10px;
     border-left: 7px #7557D3 solid;
     margin-left: 7px;
 }
@@ -179,32 +176,13 @@ td{
     background-color: transparent;
     padding: 0;
     margin: 0;
+    border: #7557D3 1px solid;
 }
-.main {
-    margin-right: 40px;
+img {
 }
 
 .main-modal {
   position: absolute;
 }
 
-.deny-decision {
-  position: absolute;
-}
-
-.approve-decision {
-  position: absolute;
-}
-
-.th div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0 5px;
-}
-
-.th p {
-  align-self: flex-end;
-  /* // justify-self: center; */
-}
 </style>

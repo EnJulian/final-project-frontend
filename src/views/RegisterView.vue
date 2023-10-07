@@ -16,9 +16,9 @@ function togglePassword() {
 <template>
   <section>
     <div class="main">
-        <FormHeaderComponent titles="Applicatant Sign up"/>
+        <FormHeaderComponent titles="Applicant Sign up"/>
       <div class="title">
-        <img class="logo" src="../assets/icons/small_logo.svg" />
+        <img class="logo" src="../assets/icons/logo.png" />
         <h3>Application Form</h3>
       </div>
       <div class="forms">
@@ -48,7 +48,7 @@ function togglePassword() {
             <div class="password-field">
               <input :type="passwordVisible ? 'text' : 'password'" class="field-input">
               <span class="password-toggle" @click="togglePassword">
-                <img src="../assets/icons/eye.svg" />
+                <img src="../assets/icons/Eye.png" />
               </span>
             </div>
           </div>
@@ -57,14 +57,14 @@ function togglePassword() {
             <div class="password-field">
               <input :type="passwordVisible ? 'text' : 'password'" class="field-input">
               <span class="password-toggle" @click="togglePassword">
-                <img src="../assets/icons/eye.svg" />
+                <img src="../assets/icons/Eye.png" />
               </span>
             </div>
           </div>
         </div>
         <div class="btn">
-          <RouterLink to="/login"><button>Sign Up</button></RouterLink>
-          <p>Already have an account? <RouterLink to="/login" class="link">Sign In</RouterLink>
+          <RouterLink to="/signin"><button>Sign Up</button></RouterLink>
+          <p>Already have an account? <RouterLink to="/signin" class="link">Sign In</RouterLink>
           </p>
         </div>
 

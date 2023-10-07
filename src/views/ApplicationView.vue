@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import FormHeaderComponent from '../components/formHeaderComponent.vue';
+import {RouterLink} from "vue-router";
 
 
 // Define reactive data using ref
@@ -124,7 +125,7 @@ const createUser = async () => {
                             <p v-show="errors[key]">{{ errors[key] }}</p>
                         </div>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button  type="submit"> <RouterLink to="/dashboard" class="link">Submit</RouterLink></button>
                 </div>
             </form>
         </div>

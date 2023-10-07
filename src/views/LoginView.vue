@@ -27,14 +27,14 @@ function togglePassword() {
                 <div class="password-field">
                     <input :type="passwordVisible ? 'text' : 'password'" class="field-input">
                     <span class="password-toggle" @click="togglePassword">
-                        <img src="../assets/icons/eye.svg" />
+                        <img src="../assets/icons/Eye.png" />
                     </span>
                 </div>
             </div>
             <div class="btn">
-                <RouterLink to="/registration"><button>Sign In</button></RouterLink>
+                <RouterLink to="/application"><button>Sign In</button></RouterLink>
                 <div class="btn-text">
-                    <p>Don’t have an account yet? <RouterLink to="/signup" class="link">Sign Up</RouterLink>
+                    <p>Don’t have an account yet? <RouterLink to="/register" class="link">Sign Up</RouterLink>
                     </p>
                     <h4>Forgot Password?</h4>
                 </div>

@@ -9,7 +9,7 @@ const adminCred = ref();
 
 async function logAdminin(){
   try {
-    const response = await axios.get("http://localhost:7006/api/v1/users/login")
+    const response = await axios.post("http://localhost:7006/api/v1/users/login")
     adminCred.value = response.data
   }
   catch (error){

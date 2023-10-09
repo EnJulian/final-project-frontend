@@ -121,7 +121,7 @@ const createUser = async () => {
                         <div v-for="(input, key) in formInputs" :key="key">
                             <label>{{ input.label }}</label>
                             <input @keypress="clearError(key)" :name="key" v-model="user[key]"
-                                :placeholder="input.placeholder" :readonly="input.readonly" />
+                                :placeholder="input.placeholder"  />
                             <p v-show="errors[key]">{{ errors[key] }}</p>
                         </div>
                     </div>

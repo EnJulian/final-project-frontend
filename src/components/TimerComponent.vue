@@ -1,3 +1,18 @@
+<script setup>
+import { ref } from 'vue';
+const selectedMinute = ref('');
+const selectedSeconds = ref('');
+
+const selectedTime = ref(null);
+const countries = ref([
+  { name: 'USA' },
+  { name: 'Canada' },
+  { name: 'Australia' },
+  { name: 'United Kingdom' },
+  { name: 'Germany' },
+]);
+</script>
+
 <template>
     <div class="container">
         <h3>Timer Setting</h3>
@@ -45,20 +60,7 @@
     </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
-const selectedMinute = ref('');
-const selectedSeconds = ref('');
 
-const selectedTime = ref(null);
-const countries = ref([
-    { name: 'USA' },
-    { name: 'Canada' },
-    { name: 'Australia' },
-    { name: 'United Kingdom' },
-    { name: 'Germany' },
-]);
-</script>
 
 
 <style scoped>
@@ -151,20 +153,6 @@ hr {
     align-items: center;
 }
 
-datalist {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    padding: 0 1em 0 0;
-    margin: 0;
-    font-family: inherit;
-    font-weight: 300;
-    font-size: 45px;
-    cursor: inherit;
-    line-height: inherit;
-    outline: none;
-    width: 100px;
-}
 
 option {
     color: #000;

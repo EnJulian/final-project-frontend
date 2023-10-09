@@ -12,7 +12,7 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
                 <h3 class="heading">Timer</h3>
                 <h4 class="time">
                     <span class="hour">00</span><span class="minutes">mins</span>
-                    <span class="seconds">000</span><span class="minutes">sec</span>
+                    <span class="hour">000</span><span class="minutes">sec</span>
                 </h4>
             </div>
         </div>
@@ -53,12 +53,15 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
     font-weight: 400;
 }
 
-.time {
-
-    font-size: 48px;
-    font-style: normal;
-    font-weight: 300;
-}
+.time .hour{
+        color: #2B3C4E;
+        text-align: center;
+        font-family: Lato;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
 
 .minutes {
     color: #4F4F4F;

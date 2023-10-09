@@ -107,8 +107,8 @@ const route = useRoute();
 .sideNavigation-links {
   display: flex;
   flex-direction: column;
-  padding: 45px 0;
-  gap: 28px;
+  padding: 20px 0;
+  gap: 20px;
   
 }
 

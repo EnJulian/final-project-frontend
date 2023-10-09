@@ -2,7 +2,7 @@
   <div class="container">
     <DashboardTitleComponent cardTitle="Assessment History" />
 
-    <table style="width: 879px">
+    <table style="width: 100%">
       <thead>
         <tr class="table-heading">
           <th>Batch</th>
@@ -54,21 +54,6 @@ input {
 
 }
 
-
-h1 {
-  color: #2B3C4E;
-  font-family: Lato;
-  font-size: 43.556px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: -0.871px;
-  margin-top: 111px;
-  margin-bottom: 62px;
-}
-
-
-
 .table-heading {
   color: white;
   background: #2b3c4e;
@@ -84,12 +69,13 @@ table {
   border-collapse: collapse;
 }
 thead{
-  height: 46px;
+  background-color: #2B3C4E;
+    color: #fff;
 }
 
 
 .container {
-  margin-right: 40px;
+  padding: 60px 47px;
 }
 
 
@@ -110,7 +96,7 @@ tr {
 .table-row {
   color: #4F4F4F;
   text-align: center;
-  font-family: Lato;
+  font-family: 'Lato';
   font-size: 14.533px;
   font-style: normal;
   font-weight: 400;

@@ -1,33 +1,3 @@
-<template>
-    <section class="section">
-        <DashboardTitleComponent cardTitle="Profiles and Settings" cardText="Helps you set admin profile and give other users permissions"/>
-
-        <div class="about-center section-center">
-            <article class="about">
-                <!-- btn container -->
-                <div class="btn-container">
-                    <button class="tab-btn" :class="{ active: activeTab === 'profile' }"
-                        @click="changeTab('profile')">Admin Profile</button>
-                    <button class="tab-btn" :class="{ active: activeTab === 'timer' }"
-                        @click="changeTab('timer')">Timer Settings</button>
-                </div>
-                <div class="about-content">
-                    <!-- single item -->
-                    <div class="content" v-show="activeTab === 'profile'">
-                        <ProfileComponent />
-                    </div>
-                    <!-- end of single item -->
-                    <!-- single item -->
-                    <div class="content" v-show="activeTab === 'timer'">
-                        <TimerComponent />
-                    </div>
-                    <!-- end of single item -->
-                </div>
-            </article>
-        </div>
-    </section>
-</template>
-
 <script setup>
 import { ref } from 'vue';
 import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
@@ -41,10 +11,54 @@ const changeTab = (tab) => {
 };
 </script>
 
+<template>
+    <div class="container">
+        <div class="section">
+            <DashboardTitleComponent cardTitle="Profiles and Settings" cardText="Helps you set admin profile and give other users permissions"/>
+    
+    
+            <div class="about-center section-center">
+                <article class="about">
+                    <!-- btn section -->
+    
+                    <div class="btn-section">
+                        <button class="tab-btn" :class="{ active: activeTab === 'profile' }"
+                            @click="changeTab('profile')">Admin Profile</button>
+                        <button class="tab-btn" :class="{ active: activeTab === 'timer' }"
+                            @click="changeTab('timer')">Timer Settings</button>
+                    </div>
+                    <div class="about-content">
+                        <!-- single item -->
+                        <div class="content" v-show="activeTab === 'profile'">
+                            <ProfileComponent />
+                        </div>
+                        <!-- end of single item -->
+                        <!-- single item -->
+                        <div class="content" v-show="activeTab === 'timer'">
+                            <TimerComponent />
+                        </div>
+                        <!-- end of single item -->
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+
 <style scoped>
+.container{
+    padding: 60px 47px;
+    height: 100vh;
+    /* overflow-y: scroll; */
+}
 .section{
-    max-width: 730px;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 47px;
+    max-width: 763px;
+    
 }
     .tab-btn{
         color: #333758;

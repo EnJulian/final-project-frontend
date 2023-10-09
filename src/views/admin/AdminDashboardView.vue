@@ -32,7 +32,7 @@ import { RouterLink } from 'vue-router'
         </div>
 
         <div class="cards">
-            <div class="card">
+            <div class="card1">
                 <div class="card-titles">
                     <h6 class="card-title">History</h6>
                     <p class="subtext">Last Update 18:24, 22/08/22</p>
@@ -84,7 +84,6 @@ import { RouterLink } from 'vue-router'
     color: #4F4F4F;
     font-family: 'Lato';
     font-size: 14px;
-
     line-height: normal;
     font-style: normal;
     font-weight: 400;
@@ -136,11 +135,6 @@ h6 {
 .green{
     background: #00F026;
 }
-.cards {
-    display: flex;
-    justify-content: space-between;
-    gap: 55px;
-}
 
 .cards {
     display: flex;
@@ -152,11 +146,13 @@ h6 {
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 87px;
+    gap: 60px;
     border-radius: 4px;
     border: 1px solid #ECECF9;
-    padding: 34px;
-    
+    padding: 30px;
+}
+.card1{
+    width: 50%;
 }
 .card-titles{
     display: flex;
@@ -175,7 +171,7 @@ p {
     color: #4F4F4F;
     text-align: center;
     font-family: 'Lato';
-    font-size: 16.727px;
+    font-size: 16px;
     max-width: 343px;
     width: 100%;
     font-style: normal;
@@ -212,7 +208,6 @@ hr {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    /* margin-top: o; */
     gap: 24px;
     width: 100%;
 }
@@ -241,10 +236,16 @@ line-height: normal;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-left: 7px solid #7557d3;
-    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
     border-radius: 8px;
-    padding: 24px 10px;
+    padding: 15px 0px;
+    margin-top: 20px;
     background-color: #fff;
+}
+.batches:hover {
+  background: #ffffff;
+  box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+  border-left: 7px solid #7557d3;
+  border-radius: 8px 0px 0px 8px;
+  cursor: pointer;
 }
 </style>

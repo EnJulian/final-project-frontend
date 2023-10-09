@@ -108,6 +108,7 @@ import { RouterLink } from 'vue-router'
     border: 1.5px solid #2b3c4e;
     border-radius: 4px;
     resize: none;
+    padding: 10px;
 }
 
 button {

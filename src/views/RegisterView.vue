@@ -5,10 +5,14 @@ import FormHeaderComponent from '../components/formHeaderComponent.vue';
 
 // Define a reactive property to track the password visibility
 const passwordVisible = ref(false);
+const passwordConfirm = ref(false);
 
 // Function to toggle password visibility
 function togglePassword() {
   passwordVisible.value = !passwordVisible.value;
+}
+function toggleConfirm() {
+  passwordConfirm.value = !passwordConfirm.value;
 }
 
 </script>
@@ -21,28 +25,28 @@ function togglePassword() {
         <div class="forms-layout">
           <div class="input-options">
             <label for="input">First Name</label>
-            <input type="text" class="field-input">
+            <input type="text" class="form-input">
           </div>
           <div class="input-options">
             <label for="input">Last Name</label>
-            <input type="text" class="field-input">
+            <input type="text" class="form-input">
           </div>
         </div>
         <div class="forms-layout">
           <div class="input-options">
             <label for="input">Email Address</label>
-            <input type="text" class="field-input">
+            <input type="text" class="form-input">
           </div>
           <div class="input-options">
             <label for="input">Phone Number</label>
-            <input type="text" class="field-input">
+            <input type="text" class="form-input">
           </div>
         </div>
         <div class="forms-layout">
           <div class="input-options">
             <label for="password">Password</label>
             <div class="password-field">
-              <input :type="passwordVisible ? 'text' : 'password'" class="field-input">
+              <input :type="passwordVisible ? 'text' : 'password'" class="form-input">
               <span class="password-toggle" @click="togglePassword">
                 <img src="../assets/icons/Eye.png" />
               </span>
@@ -51,8 +55,8 @@ function togglePassword() {
           <div class="input-options">
             <label for="confirmPassword">Confirm Password</label>
             <div class="password-field">
-              <input :type="passwordVisible ? 'text' : 'password'" class="field-input">
-              <span class="password-toggle" @click="togglePassword">
+              <input :type="passwordConfirm ? 'text' : 'password'" class="form-input">
+              <span class="password-toggle" @click="toggleConfirm">
                 <img src="../assets/icons/Eye.png" />
               </span>
             </div>
@@ -104,11 +108,12 @@ function togglePassword() {
   line-height: normal;
 }
 
-.field-input {
+.form-input {
   border-radius: 4px;
   border: 1.5px solid #BDBDBD;
   width: 379px;
   height: 48px;
+  padding: 20px;
 }
 
 .btn {
@@ -129,6 +134,7 @@ button {
   padding: 16px 233px;
   background: #7557D3;
   border: none;
+  border-radius: 4px;
 }
 
 .btn p {
@@ -161,4 +167,5 @@ button {
 /* / Style the eye icon /  */
 .password-toggle img {
   width: 18px;
-}</style>
+}
+</style>

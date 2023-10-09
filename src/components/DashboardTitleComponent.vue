@@ -19,6 +19,7 @@ const props = defineProps(["cardTitle", "cardText"]);
 
 .title {
     color: #2B3C4E;
+    font-family: Lato;
     font-size: 43.556px;
     font-style: normal;
     font-weight: 300;

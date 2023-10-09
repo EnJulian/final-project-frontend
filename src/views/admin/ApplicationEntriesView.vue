@@ -49,96 +49,70 @@ const cgpaDescending = () => {
 </script>
 
 <template>
-  <ModalComponent @close="closeModal" v-show="openmodal" class="main-modal" />
-  
-  <DashboardTitleComponent 
-      cardTitle="Entries - Batch 1"
-      cardText="Comprises of all that applied for batch 1"
-  />
-      
-        <table style="width: 100%">
-            <thead >
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th class="sorting">
-                        DOB - Age
-                        <div class="icons">
-                            <button class="btn" @click="ageAscending"><img src="../../assets/icons/sortup.svg" alt="sortup" srcset=""></button>
-                            <button class="btn" @click="ageDescending"><img src="../../assets/icons/sortdown.svg" alt="sortdown" srcset=""></button>
-                        </div>
-                    </th>
-                    <th>Address</th>
-                    <th>University</th>
-                    <th class="sorting">
-                        CGPA
-                        <div class="icons">
-                            <button class="btn" @click="cgpaAscending"><img src="../../assets/icons/sortup.svg" alt="sortup" srcset=""></button>
-                            <button class="btn" @click="cgpaDescending"><img src="../../assets/icons/sortdown.svg" alt="sortdown" srcset=""></button>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="t-row" v-for="person in sortedPeople" :key="person.id" @click="openMainModal">
-                    <td>{{ person.name }} {{ person.email }}</td>
-                    <td>{{ person.email }}</td>
-                    <td>{{ person.age }}</td>
-                    <td>{{ person.address }}</td>
-                    <td>{{ person.university }}</td>
-                    <td>{{ person.cgpa }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <ModalComponent @close="closeModal" v-show="openmodal" class="main-modal" />
+        
+        <DashboardTitleComponent 
+            cardTitle="Entries - Batch 1"
+            cardText="Comprises of all that applied for batch 1"
+        />
+            
+              <table style="width: 100%">
+                  <thead >
+                      <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th class="sorting">
+                              DOB - Age
+                              <div class="icons">
+                                  <img @click="ageAscending" src="../../assets/icons/sortup.svg" alt="sortup" srcset="">
+                                  <img @click="ageDescending" src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="">
+                              </div>
+                          </th>
+                          <th>Address</th>
+                          <th>University</th>
+                          <th class="sorting">
+                              CGPA
+                              <div class="icons">
+                                  <img @click="cgpaAscending" src="../../assets/icons/sortup.svg" alt="sortup" srcset="">
+                                  <img @click="cgpaDescending" src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="">
+                              </div>
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr class="t-row" v-for="person in sortedPeople" :key="person.id" @click="openMainModal">
+                          <td>{{ person.name }} {{ person.email }}</td>
+                          <td>{{ person.email }}</td>
+                          <td>{{ person.age }}</td>
+                          <td>{{ person.address }}</td>
+                          <td>{{ person.university }}</td>
+                          <td>{{ person.cgpa }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+    </div>
     
 
 </template>
 
 
 <style scoped>
-
-input {
-  border: none;
-  background-color: #2b3c4e;
-}
-
-
-h1 {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 44px;
-  line-height: 52px;
-  letter-spacing: -0.02em;
-  color: #2b3c4e;
-}
-
-h2 {
-  font-style: italic;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  margin-top: 3px;
-  margin-bottom: 38px;
-  color: #4f4f4f;
+.container{
+    height: 100vh;
+    padding: 60px 47px;
+    overflow-y: scroll;
 }
 
 table {
   border-collapse: collapse;
-  /* / max-width: 1000px; / */
-  /* max-width:1042px;  */
    width:100%;
    margin-top: 38px;
-  text-align: justify;
-  /* border: #7557D3 solid 10px; */
-  
-  
 }
 
 thead{
     background-color: #2B3C4E;
     color: #fff;
-    padding: 8px;
-   
 }
 th{
     color: #fff;
@@ -157,19 +131,21 @@ th{
 img {
   cursor: pointer;
 }
-
+tbody {
+    border-radius: 8px 0px 0px 8px;
+}
 .t-row:hover {
-  border-radius: 8px;
-    background: #FFF;
-    box-shadow: 0px 5px 15px 0px rgba(33, 31, 38, 0.05);
-    border-radius: 10px;
-    border-left: 7px #7557D3 solid;
-    margin-left: 7px;
+    margin-top: 20px;
+    background: #ffffff;
+  box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+  border-left: 7px solid #7557d3;
+  cursor: pointer;
 }
 
 td{
     padding: 22px 10px;
-    
+    text-align: center;
+    border-radius: 8px;
 }
 .btn{
     border: none;

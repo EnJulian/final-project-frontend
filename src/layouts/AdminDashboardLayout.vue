@@ -22,28 +22,28 @@ const route = useRoute();
                     </RouterLink>
 
                     <RouterLink class="links" :to="{ name: 'creatapp' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/createicon.svg" alt="" /></div>
                         <p class="link-text">Create Application</p>
                     </RouterLink>
 
                     <RouterLink class="links" :to="{ name: 'applicationentries' }" active-class="active">
-                            <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                            <div class="icons"><img src="@/assets/icons/entriesicon.svg" alt="" /></div>
                             <p class="link-text">Application Entries</p>
                         </RouterLink>
                     <RouterLink class="links" :to="{ name: 'composeassessment' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/composeicon.svg" alt="" /></div>
                         <p class="link-text">Compose Assessment</p>
                     </RouterLink>
                     <RouterLink class="links" :to="{ name: 'assessmentHistory' }" active-class="active">
-                            <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                            <div class="icons"><img src="@/assets/icons/historyicon.svg" alt="" /></div>
                             <p class="link-text">Assessment History</p>
                         </RouterLink>
                     <RouterLink class="links" :to="{ name: 'assessmentResult' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/results.svg" alt="" /></div>
                         <p class="link-text">Results</p>
                     </RouterLink>
                     <RouterLink class="links" :to="{ name: 'settings' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/settingicon.svg" alt="" /></div>
                         <p class="link-text">Settings</p>
                     </RouterLink>
 
@@ -130,9 +130,8 @@ const route = useRoute();
 .sideNavigation-links {
     display: flex;
     flex-direction: column;
-    padding: 45px 0;
-    gap: 28px;
-
+    padding: 20px 0;
+    gap: 15px;
 }
 
 .links {
@@ -161,6 +160,7 @@ const route = useRoute();
 .rightContent {
     height: 100vh;
     width: calc(100vw - 292px);
+    overflow-y: scroll;
 }
 
 .active {
@@ -171,7 +171,6 @@ const route = useRoute();
     font-weight: 700;
     font-style: normal;
     border-left: 4px solid #7557D3;
-
 }
 </style>
 

@@ -54,7 +54,7 @@ function previousQuestion() {
         <h3 class="heading">Timer</h3>
         <h4 class="time">
           <span class="hour">00</span><span class="minutes">mins</span>
-          <span class="seconds">000</span><span class="minutes">sec</span>
+          <span class="hour">000</span><span class="minutes">sec</span>
         </h4>
       </div>
     </div>
@@ -63,10 +63,11 @@ function previousQuestion() {
       <h1>Question {{ currentQuestionNumber }}</h1>
 
       <h2>{{ currentQuestion.question }}</h2>
+
     </div>
     <div class="answers">
-      <div class="form-group"  v-for="(option, index) in currentQuestion.options" :key="index">
-        <input type="checkbox" name="" id=""><label> {{ option }} </label>
+      <div class="form-group checkboxes"  v-for="(option, index) in currentQuestion.options" :key="index">
+        <input type="radio" name="answers" id=""><label> {{ option }} </label>
       </div>
     </div>
     <div class="btn1">
@@ -118,24 +119,24 @@ function previousQuestion() {
   font-weight: 400;
 }
 
-.hour,
-.seconds {
-  color: #2B3C4E;
-  text-align: center;
-  font-family: 'Lato';
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
+.time .hour{
+        color: #2B3C4E;
+        text-align: center;
+        font-family: 'Lato';
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+    }
 
 .questions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 64px;
+  padding-top: 100px;
   padding-bottom: 48px;
   gap: 14px;
+  text-align: left;
 }
 
 .questions h1 {
@@ -159,13 +160,27 @@ function previousQuestion() {
 .answers {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
   padding-bottom: 20px;
 }
-
+.checkboxes input[type="radio"] {
+  cursor: pointer;
+  appearance: none;
+  height: 10px;
+  width: 10px;
+  background-color: #fff;
+  border: 1px solid #2b3c4e;
+  -webkit-appearance: none;
+}
+input[type="radio"]:checked {
+  background-color: black;
+}
 .form-group{
   display: flex;
   gap: 10px;
+  float: left;
+  align-items: center;
 }
 
 .btn1 {
@@ -222,4 +237,5 @@ button{
   padding: 11px 81px;
   border-radius: 4px;
   border: none;
-}</style>
+}
+</style>

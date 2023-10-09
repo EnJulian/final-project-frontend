@@ -32,8 +32,8 @@ import { RouterLink } from 'vue-router'
         </div>
 
         <div class="cards">
-            <div class="card">
-                <div class="card-title">
+            <div class="card1">
+                <div class="card-titles">
                     <h6 class="card-title">History</h6>
                     <p class="subtext">Last Update 18:24, 22/08/22</p>
                 </div>
@@ -67,7 +67,7 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .container {
-
+    padding: 60px 47px;
     display: flex;
     flex-direction: column;
     gap: 65px;
@@ -84,7 +84,6 @@ import { RouterLink } from 'vue-router'
     color: #4F4F4F;
     font-family: 'Lato';
     font-size: 14px;
-
     line-height: normal;
     font-style: normal;
     font-weight: 400;
@@ -136,24 +135,29 @@ h6 {
 .green{
     background: #00F026;
 }
+
 .cards {
     display: flex;
     justify-content: space-between;
-    gap: 55px;
+    gap: 40px;
 }
 
 .card {
-    width: 482px;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 60px;
     border-radius: 4px;
     border: 1px solid #ECECF9;
-    padding: 34px;
-    align-items: start;
-
+    padding: 30px;
 }
-
+.card1{
+    width: 50%;
+}
+.card-titles{
+    display: flex;
+    flex-direction: column;
+}
 .card-title {
     color: #2B3C4E;
     font-family: 'Lato';
@@ -163,14 +167,26 @@ h6 {
     line-height: normal;
     letter-spacing: -0.32px;
 }
-.subtext{
+p {
     color: #4F4F4F;
     text-align: center;
+    font-family: 'Lato';
+    font-size: 16px;
+    max-width: 343px;
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+.subtext{
+    color: #4F4F4F;
     font-family: 'Nunito Sans';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     padding-top: 4px;
+    text-align: start;
 }
 
 .card-content {
@@ -192,7 +208,6 @@ hr {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px auto;
     gap: 24px;
     width: 100%;
 }
@@ -208,18 +223,6 @@ button {
     border: none;
 }
 
-p {
-    color: #4F4F4F;
-    text-align: center;
-    font-family: 'Lato';
-    font-size: 16.727px;
-    max-width: 343px;
-    width: 100%;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-}
 .batch-text{
     color: #4F4F4F;
 text-align: center;
@@ -233,10 +236,18 @@ line-height: normal;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-left: 7px solid #7557d3;
-    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
     border-radius: 8px;
-    padding: 24px 10px;
+    padding: 15px 0px;
+    margin-top: 20px;
     background-color: #fff;
 }
+
+.batches:hover {
+  background: #ffffff;
+  box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+  border-left: 7px solid #7557d3;
+  border-radius: 8px 0px 0px 8px;
+  cursor: pointer;
+}
 </style>
+

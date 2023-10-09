@@ -26,28 +26,28 @@ const adminDetails = JSON.parse(adminDetailsLS);
                     </RouterLink>
 
                     <RouterLink class="links" :to="{ name: 'creatapp' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/createicon.svg" alt="" /></div>
                         <p class="link-text">Create Application</p>
                     </RouterLink>
 
                     <RouterLink class="links" :to="{ name: 'applicationentries' }" active-class="active">
-                            <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                            <div class="icons"><img src="@/assets/icons/entriesicon.svg" alt="" /></div>
                             <p class="link-text">Application Entries</p>
                         </RouterLink>
                     <RouterLink class="links" :to="{ name: 'composeassessment' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/composeicon.svg" alt="" /></div>
                         <p class="link-text">Compose Assessment</p>
                     </RouterLink>
                     <RouterLink class="links" :to="{ name: 'assessmentHistory' }" active-class="active">
-                            <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                            <div class="icons"><img src="@/assets/icons/historyicon.svg" alt="" /></div>
                             <p class="link-text">Assessment History</p>
                         </RouterLink>
                     <RouterLink class="links" :to="{ name: 'assessmentResult' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/results.svg" alt="" /></div>
                         <p class="link-text">Results</p>
                     </RouterLink>
                     <RouterLink class="links" :to="{ name: 'settings' }" active-class="active">
-                        <div class="icons"><img src="@/assets/icons/assessment.svg" alt="" /></div>
+                        <div class="icons"><img src="@/assets/icons/settingicon.svg" alt="" /></div>
                         <p class="link-text">Settings</p>
                     </RouterLink>
 
@@ -67,8 +67,9 @@ const adminDetails = JSON.parse(adminDetailsLS);
 
 <style scoped>
 .sideNavigation {
-
-    width: 305px;
+    width: 292px;
+    height: 100vh;
+    overflow-y: scroll;
     font-family: 'Lato';
     background: #ffffff;
     border-radius: 8px;
@@ -78,8 +79,12 @@ const adminDetails = JSON.parse(adminDetailsLS);
 
 .layoutPart {
     display: grid;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: 1fr 11fr;
+    width: 100vh;
 }
+
+
+
 
 .profilePart {
     background: #7557D3;
@@ -119,7 +124,7 @@ const adminDetails = JSON.parse(adminDetailsLS);
 
 .profile-gmail {
     color: #FFF;
-    font-family: Lato;
+    font-family: 'Lato';
     font-size: 16px;
     font-style: italic;
     font-weight: 400;
@@ -129,9 +134,8 @@ const adminDetails = JSON.parse(adminDetailsLS);
 .sideNavigation-links {
     display: flex;
     flex-direction: column;
-    padding: 45px;
-    gap: 28px;
-
+    padding: 20px 0;
+    gap: 15px;
 }
 
 .links {
@@ -144,7 +148,7 @@ const adminDetails = JSON.parse(adminDetailsLS);
     text-decoration: none;
     color: #2B3C4E;
     text-align: center;
-
+    padding: 15px;
     line-height: normal;
 }
 
@@ -154,11 +158,13 @@ const adminDetails = JSON.parse(adminDetailsLS);
 }
 
 .logout {
-    margin-top: 100px;
+    margin-top: 32px;
 }
 
 .rightContent {
-    padding: 102px 47px;
+    height: 100vh;
+    width: calc(100vw - 292px);
+    overflow-y: scroll;
 }
 
 .active {
@@ -168,7 +174,7 @@ const adminDetails = JSON.parse(adminDetailsLS);
     text-align: center;
     font-weight: 700;
     font-style: normal;
-
+    border-left: 4px solid #7557D3;
 }
 </style>
 

@@ -89,6 +89,7 @@ onMounted(async () => {
 </script>
 
 <template>
+ <div class="container">
   <ModalComponent @close="closeModal" v-show="openmodal" class="main-modal" />
   
   <DashboardTitleComponent 
@@ -130,55 +131,27 @@ onMounted(async () => {
                 </tr>
             </tbody>
         </table>
-    
+      </div>    
 
 </template>
 
 
 <style scoped>
-
-input {
-  border: none;
-  background-color: #2b3c4e;
-}
-
-
-h1 {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 44px;
-  line-height: 52px;
-  letter-spacing: -0.02em;
-  color: #2b3c4e;
-}
-
-h2 {
-  font-style: italic;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  margin-top: 3px;
-  margin-bottom: 38px;
-  color: #4f4f4f;
+.container{
+    height: 100vh;
+    padding: 60px 47px;
+    overflow-y: scroll;
 }
 
 table {
   border-collapse: collapse;
-  /* / max-width: 1000px; / */
-  /* max-width:1042px;  */
    width:100%;
    margin-top: 38px;
-  text-align: justify;
-  /* border: #7557D3 solid 10px; */
-  
-  
 }
 
 thead{
     background-color: #2B3C4E;
     color: #fff;
-    padding: 8px;
-   
 }
 th{
     color: #fff;
@@ -197,19 +170,21 @@ th{
 img {
   cursor: pointer;
 }
-
+tbody {
+    border-radius: 8px 0px 0px 8px;
+}
 .t-row:hover {
-  border-radius: 8px;
-    background: #FFF;
-    box-shadow: 0px 5px 15px 0px rgba(33, 31, 38, 0.05);
-    border-radius: 10px;
-    border-left: 7px #7557D3 solid;
-    margin-left: 7px;
+    margin-top: 20px;
+    background: #ffffff;
+  box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+  border-left: 7px solid #7557d3;
+  cursor: pointer;
 }
 
 td{
     padding: 22px 10px;
-    
+    text-align: center;
+    border-radius: 8px;
 }
 .btn{
     border: none;

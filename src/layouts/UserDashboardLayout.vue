@@ -5,7 +5,7 @@ const route = useRoute();
 
 <template>
   <div class="layoutPart">
-    <div class="sidebar">
+    
       <div class="sideNavigation">
         <div class="profilePart">
           <img class="profile-img" src="@/assets/icons/leftbanner.png" alt="profile picture" />
@@ -32,7 +32,7 @@ const route = useRoute();
           </RouterLink>
         </div>
       </div>
-    </div>
+    
     <div class="rightContent">
       <RouterView />
     </div>
@@ -42,7 +42,6 @@ const route = useRoute();
 
 <style scoped>
 .sideNavigation {
-  
   width: 292px;
   height: 100vh;
   font-family: 'Lato';
@@ -54,6 +53,7 @@ const route = useRoute();
 .layoutPart {
   display: grid;
   grid-template-columns: 1fr 11fr;
+  width: 100vh;
 }
 
 
@@ -95,7 +95,7 @@ const route = useRoute();
   letter-spacing: -0.4px;
 }
 
-.profile-mail {
+.profile-gmail {
   color: #FFF;
   font-family: 'Lato';
   font-size: 16px;
@@ -107,8 +107,8 @@ const route = useRoute();
 .sideNavigation-links {
   display: flex;
   flex-direction: column;
-  padding: 45px;
-  gap: 28px;
+  padding: 20px 0;
+  gap: 20px;
   
 }
 
@@ -122,7 +122,7 @@ const route = useRoute();
   text-decoration: none;
   color: #2B3C4E;
   text-align: center;
-  
+  padding: 15px;
   line-height: normal;
 }
 
@@ -135,7 +135,8 @@ const route = useRoute();
   margin-top: 32px;
 }
 .rightContent {
-  padding: 80px 47px;
+  height: 100vh;
+  width: calc(100vw - 292px);
 } 
 .active {
   font-family: 'Lato';
@@ -144,6 +145,7 @@ const route = useRoute();
   text-align: center;
   font-weight: 700;
   font-style: normal;
+  border-left: 4px solid #7557D3;
  
 }
 

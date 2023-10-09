@@ -14,18 +14,19 @@ function togglePassword() {
 </script>
 
 <template>
-    <section>
-        <div class="main">
+
+    <section class="container">
+        <div class="header">
         <FormHeaderComponent titles="Applicant Log in" />
         <div class="forms">
             <div class="input-options">
                 <label for="input">Email Address</label>
-                <input type="text" class="field-input">
+                <input type="text" class="form-input">
             </div>
             <div class="input-options">
                 <label for="password">Password</label>
                 <div class="password-field">
-                    <input :type="passwordVisible ? 'text' : 'password'" class="field-input">
+                    <input :type="passwordVisible ? 'text' : 'password'" class="form-input">
                     <span class="password-toggle" @click="togglePassword">
                         <img src="../assets/icons/Eye.png" />
                     </span>
@@ -45,18 +46,29 @@ function togglePassword() {
 </template>
 
 <style scoped>
-.main {
-    display: flex;
-    flex-direction: column;
+.container {
+    display: flex; 
     align-items: center;
     justify-content: center;
     gap: 24px;
     padding-bottom: 69px;
     margin-top: 70px;
+    border: #000 2px solid;
+    height: 100vh;
 }
 
 
 
+.container p {
+    color: #2B3C4E;
+    font-family: 'Lato';
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+}
+
+  
 .forms {
     display: flex;
     flex-direction: column;
@@ -80,11 +92,12 @@ function togglePassword() {
     line-height: normal;
 }
 
-.field-input {
+.form-input {
     border-radius: 4px;
     border: 1.5px solid #BDBDBD;
     width: 379px;
     height: 48px;
+    padding: 20px;
 }
 
 /* / Additional CSS for the password toggle icon /  */
@@ -123,6 +136,7 @@ button {
     background: #7557D3;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .btn-text {

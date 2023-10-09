@@ -1,183 +1,119 @@
+<script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
+const router = useRouter()
+
+</script>
+
 <template>
-    
-        <div class="main">
-          <h1>
-            Entries - Batch 1 <img src="@/assets/icons/Polygon 2.9.svg" alt="logo" />
-          </h1>
-          <h2>Comprises of all that applied for batch 1</h2>
-  
-          <table style="width: 100%">
-            <tr class="table-heading">
-              <th>Name</th>
-              <th>Email</th>
-              <th class="th">
-                <div class="sort-header">
-                  <p>DOB - Age</p>
-                  <figure>
-                    <img @click="ageAscending" class="Sorting" src="@/assets/icons/Sorting.svg" alt="Sorting" srcset="" />
-  
-                    
-                  </figure>
-                </div>
-              </th>
-              <th>Address</th>
-              <th>University</th>
-              <th class="th">
-                <div>
-                  <p>CGPA</p>
-                  <figure>
-                    <img @click="gpaAscending" class="Sorting" src="@/assets/icons/Sorting.svg" alt="Sorting" />
-  
-                    
-                  </figure>
-                </div>
-              </th>
-              <th class="th">
-              <div>
-                <p>Test Scores</p>
-                <figure>
-                  <img @click="testAscending" class="Sorting" src="@/assets/icons/Sorting.svg" alt="Sorting" srcset="" />
-                  
-                </figure>
-              </div>
-            </th>
-            </tr>
-            <tr class="table-rows" @click="router.push('profile-settings')">
-              <td>Jackline Timah </td>
-              <td>jackline@gmail.com</td>
-              <td>18/12/2001-21</td>
-              <td>GW-0003-3666</td>
-              <td>University of Ghana</td>
-              <td>3.75</td>
-              <td>50</td>
-            </tr>
-          </table>
-        </div>
-  
-  </template>
-  
-  <script setup>
-  import { ref, computed } from 'vue';
-  import { useRouter } from 'vue-router';
-  const router = useRouter()
-  
-  </script>
-  
-  <style scoped>
-  .Sorting {
-    padding-bottom: 2px;
-  }
-  
-  input {
-    border: none;
-    background-color: #2b3c4e;
-  }
-  
-  /* .numbs {
-    right: 130px;
-  } */
-  h1 {
-    color: #2B3C4E;
-    font-family: Lato;
-    font-size: 43.556px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    letter-spacing: -0.871px;
-    margin-top: 101px;
-    padding-left: 42px;
-  }
-  
-  h2 {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    margin-top: 3px;
-    margin-bottom: 38px;
-    color: #4f4f4f;
-    padding-left: 42px;
-  }
-  
-  .table-heading {
-    width: 1042px;
-    height: 46px;
-    color: white;
-    background: #2b3c4e;
-    border-collapse: collapse;
-  }
-  .sort-header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-  }
-  td {
-    padding: 24px 26px;
-  }
-  
-  table {
-    border-collapse: collapse;
-  }
-  
-  img {
-    cursor: pointer;
-    width: 12px;
-    height: 12px;
-    flex-shrink: 0;
-  }
-  
-  .main {
-    margin-right: 40px;
-  }
+  <div class="container">
+    <DashboardTitleComponent cardTitle="Entries - Batch 1"
+      cardText="Comprises of all that applied for batch 1"
+    />
+
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th class="sorting">
+            DOB - Age
+            <div class="icons">
+              <figure class="btn" @click="ageAscending"><img src="../../assets/icons/sortup.svg" alt="sortup"
+                  srcset=""></figure>
+              <figure class="btn" @click="ageDescending"><img src="../../assets/icons/sortdown.svg" alt="sortdown"
+                  srcset=""></figure>
+            </div>
+          </th>
+          <th>Address</th>
+          <th>University</th>
+          <th class="sorting">
+            CGPA
+            <div class="icons">
+              <figure class="btn" @click="cgpaAscending"><img src="../../assets/icons/sortup.svg" alt="sortup" srcset=""></figure>
+              <figure class="btn" @click="cgpaDescending"><img src="../../assets/icons/sortdown.svg" alt="sortdown"
+                  srcset=""></figure>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="t-row" v-for="person in sortedPeople" :key="person.id" @click="openMainModal">
+          <td>{{ person.name }} {{ person.email }}</td>
+          <td>{{ person.email }}</td>
+          <td>{{ person.age }}</td>
+          <td>{{ person.address }}</td>
+          <td>{{ person.university }}</td>
+          <td>{{ person.cgpa }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
   
 
-  figure {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0;
-    align-self: center;
-  }
   
-  tr {
-    border-radius: 8px 0px 0px 8px;
-  }
-  
-  .table-rows:hover {
-    background: #ffffff;
-    box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
-    border-left: 7px solid #7557d3;
-    border-radius: 8px 0px 0px 8px;
-    margin-top: 20px;
-    cursor: pointer;
-  }
-  .table-rows{
-    color: #FFF;
-    text-align: center;
-    font-family: Lato;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .th div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0 5px;
-  }
-  
-  .th p {
-    align-self: flex-end;
-    color: white;
- }
+<style scoped>
+.container {
+  height: 100vh;
+  padding: 60px 47px;
+  overflow-y: scroll;
+}
 
- th{
-    align-self: flex-end;
-    justify-self: center; 
-    color: white;
- }
- 
- </style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 38px;
+}
+
+thead {
+  background-color: #2B3C4E;
+  color: #fff;
+}
+tr{
+  border-radius: 10px;
+}
+th {
+  padding: 0 10px;
+  color: #fff;
+  /* padding: 14px 10px; */
+}
+
+.sorting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  /* gap: 3px; */
+}
+
+img {
+  cursor: pointer;
+}
+
+.t-row:hover {
+  border-radius: 8px;
+  background: #FFF;
+  box-shadow: 0px 5px 15px 0px rgba(33, 31, 38, 0.05);
+  border-radius: 10px;
+  border-left: 7px #7557D3 solid;
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+td {
+  padding: 22px 10px;
+  text-align: center;
+}
+
+.btn {
+  border: none;
+  background-color: transparent;
+  border: #7557D3 1px solid;
+}
+</style>

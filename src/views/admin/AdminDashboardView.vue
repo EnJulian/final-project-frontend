@@ -21,7 +21,7 @@ import { RouterLink } from 'vue-router'
                 <h5 class="date-title">Total Applications</h5>
                 <h3 class="text">7000</h3>
                 <div class="line green"></div>
-                <h6>All entries do far</h6>
+                <h6>All entries so far</h6>
             </div>
             <div class="date">
                 <h5 class="date-title">Academy’s</h5>
@@ -241,6 +241,7 @@ line-height: normal;
     margin-top: 20px;
     background-color: #fff;
 }
+
 .batches:hover {
   background: #ffffff;
   box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
@@ -249,3 +250,4 @@ line-height: normal;
   cursor: pointer;
 }
 </style>
+

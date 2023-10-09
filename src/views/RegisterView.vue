@@ -19,8 +19,9 @@ function toggleConfirm() {
 
 <template>
   <section>
+
     <div class="container">
-      <FormHeaderComponent titles="Applicant Sign up"/>
+        <FormHeaderComponent titles="Applicant Sign up"/>
       <div class="forms">
         <div class="forms-layout">
           <div class="input-options">
@@ -74,12 +75,19 @@ function toggleConfirm() {
 </template>
 
 <style scoped>
-.container{
+
+.container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
+  align-items: center;
+  padding-top: 160px;
+  margin-bottom: 240px;
 }
+
+
+
 .forms {
   display: flex;
   flex-direction: column;

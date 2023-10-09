@@ -125,9 +125,7 @@ const createUser = async () => {
                             <p v-show="errors[key]">{{ errors[key] }}</p>
                         </div>
                     </div>
-                    <RouterLink to="/dashboard" class="link">
-                        <button  type="submit"> Submit</button>
-                    </RouterLink>
+                    <button type="submit"> <RouterLink to="/dashboard" class="link">Submit</RouterLink></button>
                 </div>
             </form>
         </div>
@@ -192,10 +190,13 @@ button {
     margin-top: 40px;
     background: #7557d3;
     border-radius: 4px;
-    color: #ffffff;
+    color: white;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
+}
+.press{
+    color: white;
 }
 
 h1 {

@@ -14,9 +14,10 @@ function togglePassword() {
 </script>
 
 <template>
+
     <section class="container">
         <div class="header">
-            <FormHeaderComponent titles="Applicant Log in" />
+        <FormHeaderComponent titles="Applicant Log in" />
         <div class="forms">
             <div class="input-options">
                 <label for="input">Email Address</label>
@@ -49,9 +50,14 @@ function togglePassword() {
     display: flex; 
     align-items: center;
     justify-content: center;
+    gap: 24px;
+    padding-bottom: 69px;
+    margin-top: 70px;
     border: #000 2px solid;
     height: 100vh;
 }
+
+
 
 .container p {
     color: #2B3C4E;
@@ -62,6 +68,7 @@ function togglePassword() {
     line-height: normal;
 }
 
+  
 .forms {
     display: flex;
     flex-direction: column;

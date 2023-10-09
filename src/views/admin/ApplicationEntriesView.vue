@@ -1,7 +1,8 @@
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed, onMounted} from 'vue';
 import ModalComponent from '../../components/ModalComponent.vue';
 import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
+import axios from "axios";
 
 const openmodal = ref(false);
 
@@ -23,29 +24,68 @@ const closeModal = () => {
     openmodal.value = false;
 };
 
-const people = ref([
-    { id: 1, name: 'jack jack', age: 12, email: 'jack@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 2.54 },
-    { id: 2, name: 'Bongo', age: 13, email: 'bongo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.54 },
-    { id: 3, name: 'congo', age: 14, email: 'congo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.24 },
-]);
+// const people = ref([
+//     { id: 1, name: 'jack jack', age: 12, email: 'jack@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 2.54 },
+//     { id: 2, name: 'Bongo', age: 13, email: 'bongo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.54 },
+//     { id: 3, name: 'congo', age: 14, email: 'congo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.24 },
+// ]);
 
 const sortedPeople = computed(() => {
     return [...people.value].sort((a, b) => a.age - b.age || a.cgpa - b.cgpa);
 });
 
 const ageAscending = () => {
-    people.value.sort((a, b) => a.age - b.age || a.cgpa - b.cgpa);
+    people.value.sort((a, b) => b.age - a.age);
 };
 const ageDescending = () => {
-    people.value.sort((a, b) => b.age - a.age || b.cgpa - a.cgpa);
+    people.value.sort((a, b) => b.age - a.age);
 };
 
 const cgpaAscending = () => {
-    people.value.sort((a, b) => a.cgpa - b.cgpa || a.age - b.age);
+    people.value.sort((a, b) => b.cgpa - a.cgpa);
 };
 const cgpaDescending = () => {
-    people.value.sort((a, b) => b.cgpa - a.cgpa || b.age - a.age);
+    people.value.sort((a, b) => b.cgpa - a.cgpa);
 };
+
+const people = ref([])
+
+/*
+* methods
+ */
+
+function setPeople(data) {
+  people.value = data
+}
+
+async function getAllApplicants() {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get("//localhost:7006/api/v1/application", {
+      headers: { authorization: token },
+    });
+    setPeople(response.data.data)
+    console.log(response)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/*
+* computed
+ */
+
+const fullName = computed(() => {
+  return (firstName, lastName) => {
+    return `${firstName} ${lastName}`
+  }
+});
+
+onMounted(async () => {
+  await getAllApplicants()
+})
+
+
 </script>
 
 <template>
@@ -81,9 +121,9 @@ const cgpaDescending = () => {
             </thead>
             <tbody>
                 <tr class="t-row" v-for="person in sortedPeople" :key="person.id" @click="openMainModal">
-                    <td>{{ person.name }}</td>
+                    <td>{{ fullName(person.first_name, person.last_name) }}</td>
                     <td>{{ person.email }}</td>
-                    <td>{{ person.age }}</td>
+                    <td>{{ person.date_of_birth }}</td>
                     <td>{{ person.address }}</td>
                     <td>{{ person.university }}</td>
                     <td>{{ person.cgpa }}</td>

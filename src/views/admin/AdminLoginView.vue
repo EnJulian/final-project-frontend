@@ -1,22 +1,37 @@
 <script setup>
 import {ref} from 'vue';
-import { RouterLink } from "vue-router";
 import axios from "axios";
+import {useRouter} from "vue-router";
+
+const emailValue = ref("");
+const passwordValue = ref("");
+const router = useRouter()
+    
 
 
-const router = RouterLink();
-const adminCred = ref();
+// const adminCred = ref();
 
 async function logAdminin(){
   try {
-    const response = await axios.post("http://localhost:7006/api/v1/users/login")
-    adminCred.value = response.data
+    const token = localStorage.getItem("token")
+    const response = await axios.post("http://localhost:7006/api/v1/users/login", {
+      email: emailValue.value,
+      password: passwordValue.value
+    }, {headers: {
+      authorization: token
+      }})
+    console.log("res", response)
+    const { first_name, last_name, id, role, email } = response.data.data;
+    const user = { first_name, last_name, id, role, email };
+    localStorage.setItem("token", response.data.data.token)
+    localStorage.setItem("adminDetails", JSON.stringify(user))
+    // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
+    router.push({ name: "AdminDashboard" });
   }
   catch (error){
     console.log(error)
   }
 }
-logAdminin();
 
 // Define a reactive property to track the password visibility
 const passwordVisible = ref(false);
@@ -39,21 +54,21 @@ function togglePassword() {
       <div class="forms">
         <div class="input-options">
           <label for="input">Email Address</label>
-          <input type="text" class="field-input">
+          <input type="text" class="field-input" v-model="emailValue" >
         </div>
         <div class="input-options">
           <label for="password">Password</label>
           <div class="password-field">
-            <input :type="passwordVisible ? 'text' : 'password'" class="field-input">
+            <input :type="passwordVisible ? 'text' : 'password'" class="field-input" v-model="passwordValue">
             <span class="password-toggle" @click="togglePassword">
                             <img src="../../assets/icons/Eye.png" alt="show password"/>
                         </span>
           </div>
         </div>
-        <div @click="router.push({ name: 'adminDashboard' })" class="btn">
-          <RouterLink to="/adminDashboard">
-            <button>Sign In</button>
-          </RouterLink>
+        <div class="btn">
+<!--          <RouterLink to="/adminDashboard">-->
+            <button @click="logAdminin">Sign In</button>
+<!--          </RouterLink>-->
         </div>
       </div>
     </div>

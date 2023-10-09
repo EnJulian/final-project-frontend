@@ -26,7 +26,7 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
             </div>
             <div>
                 <button>
-                    <RouterLink class="links" to="/user">Home</RouterLink>
+                    <RouterLink class="links" to="/">Home</RouterLink>
                 </button>
             </div>
         </div>
@@ -35,6 +35,11 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
     </div>
 </template>
 <style scoped>
+.container{
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 60px 47px;
+}
 .head {
     display: flex;
     justify-content: space-between;

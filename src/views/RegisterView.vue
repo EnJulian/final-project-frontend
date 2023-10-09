@@ -15,12 +15,8 @@ function togglePassword() {
 
 <template>
   <section>
-    <div class="main">
-        <FormHeaderComponent titles="Applicant Sign up"/>
-      <div class="title">
-        <img class="logo" src="../assets/icons/logo.png" />
-        <h3>Application Form</h3>
-      </div>
+    <div class="container">
+      <FormHeaderComponent titles="Applicant Sign up"/>
       <div class="forms">
         <div class="forms-layout">
           <div class="input-options">
@@ -74,30 +70,17 @@ function togglePassword() {
 </template>
 
 <style scoped>
-.title {
+.container{
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
-  padding-top: 160px;
-  gap: 24px;
+  height: 100vh;
+  justify-content: center;
 }
-
-.title h3 {
-  color: #2B3C4E;
-  font-family: 'Lato';
-  font-size: 24px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: normal;
-}
-
 .forms {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 68px;
   gap: 27px;
 }
 

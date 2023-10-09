@@ -37,6 +37,9 @@
     </div>
 </template>
 <style scoped>
+.container{
+    padding: 60px 47px;
+}
 .head{
     display: flex;
     justify-content: space-between;
@@ -84,10 +87,9 @@
         text-decoration: none;
         color: #fff;
     }
-
-<style scoped>
- button {
+    button {
         background-color: #B1B1B1;
         padding: 10px 40px;
+        border: none;
     }
 </style> 

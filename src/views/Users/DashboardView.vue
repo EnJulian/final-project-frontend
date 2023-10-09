@@ -60,7 +60,10 @@ import { RouterLink } from 'vue-router'
     flex-direction: column;
     gap: 65px;
     font-family: 'Lato';
-   
+    width: inherit;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 60px 47px;
 }
 
 .applicant-info {
@@ -129,8 +132,7 @@ h6 {
 }
 
 .card {
-    width: 482px;
-    height: 453px;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 87px;

@@ -33,7 +33,7 @@ import { RouterLink } from 'vue-router'
 
         <div class="cards">
             <div class="card">
-                <div class="card-title">
+                <div class="card-titles">
                     <h6 class="card-title">History</h6>
                     <p class="subtext">Last Update 18:24, 22/08/22</p>
                 </div>
@@ -67,7 +67,7 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .container {
-
+    padding: 60px 47px;
     display: flex;
     flex-direction: column;
     gap: 65px;
@@ -142,18 +142,26 @@ h6 {
     gap: 55px;
 }
 
+.cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
 .card {
-    width: 482px;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 87px;
     border-radius: 4px;
     border: 1px solid #ECECF9;
     padding: 34px;
-    align-items: start;
-
+    
 }
-
+.card-titles{
+    display: flex;
+    flex-direction: column;
+}
 .card-title {
     color: #2B3C4E;
     font-family: 'Lato';
@@ -163,14 +171,26 @@ h6 {
     line-height: normal;
     letter-spacing: -0.32px;
 }
-.subtext{
+p {
     color: #4F4F4F;
     text-align: center;
+    font-family: 'Lato';
+    font-size: 16.727px;
+    max-width: 343px;
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+.subtext{
+    color: #4F4F4F;
     font-family: 'Nunito Sans';
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     padding-top: 4px;
+    text-align: start;
 }
 
 .card-content {
@@ -192,7 +212,7 @@ hr {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px auto;
+    /* margin-top: o; */
     gap: 24px;
     width: 100%;
 }
@@ -208,18 +228,6 @@ button {
     border: none;
 }
 
-p {
-    color: #4F4F4F;
-    text-align: center;
-    font-family: 'Lato';
-    font-size: 16.727px;
-    max-width: 343px;
-    width: 100%;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-}
 .batch-text{
     color: #4F4F4F;
 text-align: center;

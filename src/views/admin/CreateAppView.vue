@@ -32,7 +32,7 @@ import { RouterLink } from 'vue-router'
                     <label class="labels">Instructions</label>
                     <textarea class="text-area" name="" id="" ></textarea>
                 </div>
-                <div class="button1" type="submit"><button>Submit</button></div>
+                <div class="btn-container" type="submit"><button>Submit</button></div>
             </form>
 
             
@@ -45,6 +45,9 @@ import { RouterLink } from 'vue-router'
     flex-direction: column;
     gap: 65px;
     font-family: 'Lato';
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 60px 47px;
 }
 .file-label {
     width: 456px;
@@ -72,7 +75,7 @@ import { RouterLink } from 'vue-router'
 }
 .form-container {
     display: grid;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: 1fr 1fr;
     place-items: center;
     gap: 52px 64px;
     margin-bottom: 36px;
@@ -83,7 +86,7 @@ import { RouterLink } from 'vue-router'
     border: 1.5px solid #2b3c4e;
     border-radius: 4px;
     height: 41px;
-    width: 456px;
+    width: 100%;
     border-radius: 4px;
     margin-top: 5px;
     padding-left: 10px;
@@ -100,7 +103,7 @@ import { RouterLink } from 'vue-router'
 .text-area {
     margin-top: 5px;
     height: 144px;
-    width: 976px;
+    width: 100%;
     border-radius: 4px;
     border: 1.5px solid #2b3c4e;
     border-radius: 4px;
@@ -122,7 +125,7 @@ button {
     cursor: pointer;
 }
 
-.button1 {
+.btn-container {
     text-align: center;
     margin-top: 44px;
 }
@@ -131,5 +134,6 @@ button {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 100%;
 }
 </style>

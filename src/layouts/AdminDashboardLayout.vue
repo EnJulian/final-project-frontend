@@ -11,7 +11,7 @@ const route = useRoute();
                     <img class="profile-img" src="@/assets/icons/leftbanner.png" alt="profile picture" />
                     <div class="details">
                         <h1 class="profile-name">Andy Cole</h1>
-                        <p mailto:class="profile-gmail">cole@gmail.com</p>
+                        <p class="profile-gmail">cole@gmail.com</p>
                     </div>
                 </div>
 
@@ -63,8 +63,9 @@ const route = useRoute();
 
 <style scoped>
 .sideNavigation {
-
-    width: 305px;
+    width: 292px;
+    height: 100vh;
+    overflow-y: scroll;
     font-family: 'Lato';
     background: #ffffff;
     border-radius: 8px;
@@ -74,8 +75,12 @@ const route = useRoute();
 
 .layoutPart {
     display: grid;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: 1fr 11fr;
+    width: 100vh;
 }
+
+
+
 
 .profilePart {
     background: #7557D3;
@@ -115,7 +120,7 @@ const route = useRoute();
 
 .profile-gmail {
     color: #FFF;
-    font-family: Lato;
+    font-family: 'Lato';
     font-size: 16px;
     font-style: italic;
     font-weight: 400;
@@ -125,7 +130,7 @@ const route = useRoute();
 .sideNavigation-links {
     display: flex;
     flex-direction: column;
-    padding: 45px;
+    padding: 45px 0;
     gap: 28px;
 
 }
@@ -140,7 +145,7 @@ const route = useRoute();
     text-decoration: none;
     color: #2B3C4E;
     text-align: center;
-
+    padding: 15px;
     line-height: normal;
 }
 
@@ -150,11 +155,12 @@ const route = useRoute();
 }
 
 .logout {
-    margin-top: 100px;
+    margin-top: 32px;
 }
 
 .rightContent {
-    padding: 102px 47px;
+    height: 100vh;
+    width: calc(100vw - 292px);
 }
 
 .active {
@@ -164,6 +170,7 @@ const route = useRoute();
     text-align: center;
     font-weight: 700;
     font-style: normal;
+    border-left: 4px solid #7557D3;
 
 }
 </style>

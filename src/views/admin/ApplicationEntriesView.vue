@@ -81,7 +81,7 @@ const cgpaDescending = () => {
             </thead>
             <tbody>
                 <tr class="t-row" v-for="person in sortedPeople" :key="person.id" @click="openMainModal">
-                    <td>{{ person.name }}</td>
+                    <td>{{ person.name }} {{ person.email }}</td>
                     <td>{{ person.email }}</td>
                     <td>{{ person.age }}</td>
                     <td>{{ person.address }}</td>

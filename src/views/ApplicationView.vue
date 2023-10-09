@@ -75,7 +75,7 @@ const createUser = async () => {
 
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.post('http://localhost:3000/api/v1/auth/application', formData, {
+        const response = await axios.post('http://localhost:7009/api/v1/auth/application', formData, {
             headers: {
                 Authorization: `Basic ${token}`,
             },
@@ -125,20 +125,37 @@ const createUser = async () => {
                             <p v-show="errors[key]">{{ errors[key] }}</p>
                         </div>
                     </div>
-                    <button  type="submit"> <RouterLink to="/dashboard" class="link">Submit</RouterLink></button>
+                    <RouterLink to="/dashboard" class="link">
+                        <button  type="submit"> Submit</button>
+                    </RouterLink>
                 </div>
             </form>
         </div>
     </div>
 </template>
 
-
-
-
-
-
-
 <style scoped>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  margin-left: 100px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 .loader {
     position: absolute;
     top: 400px;
@@ -190,10 +207,6 @@ h1 {
     margin-bottom: 70px;
     text-align: center;
     color: #2b3c4e;
-}
-
-.logo-image {
-    text-align: center;
 }
 
 input {
@@ -290,14 +303,16 @@ form {
     justify-content: center;
     align-items: center;
     position: relative;
+    width: 963px;
 }
 
 .container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 100px 0;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin-top: 45px;
 }
 
 .uploads {

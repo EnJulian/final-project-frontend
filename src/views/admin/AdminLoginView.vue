@@ -1,10 +1,10 @@
 <script setup>
 import {ref} from 'vue';
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import axios from "axios";
 
 
-const router = RouterLink();
+const router = useRouter();
 const adminCred = ref();
 
 async function logAdminin(){
@@ -29,7 +29,6 @@ function togglePassword() {
 </script>
 
 <template>
-  <div class="content">
     <div class="container">
       <div class="main">
         <img src="../../assets/icons/logo.png">
@@ -57,21 +56,13 @@ function togglePassword() {
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <style scoped>
-.content {
-  height: 100vh;
-  background-color: #7557D3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .container {
-  width: 100%;
-  height: 624px;
+  height: 100vh;
+  background-color: #7557D3;
   background-image: url('../../assets/icons/bglogin.svg');
   background-repeat: no-repeat;
   background-position: right;
@@ -129,6 +120,8 @@ function togglePassword() {
   width: 379px;
   height: 48px;
   background-color: transparent;
+  padding: 20px;
+  color: #fff;
 }
 
 /* / Additional CSS for the password toggle icon /  */
@@ -166,6 +159,7 @@ button {
   line-height: normal;
   background: #fff;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
 }
 

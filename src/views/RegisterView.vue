@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from "vue-router";
+import {RouterLink, useRouter} from "vue-router";
+import axios from "axios";
 import FormHeaderComponent from '../components/formHeaderComponent.vue';
 
 // Define a reactive property to track the password visibility
@@ -15,6 +16,45 @@ function toggleConfirm() {
   passwordConfirm.value = !passwordConfirm.value;
 }
 
+const firstNameValue = ref("");
+const lastNameValue = ref("");
+const emailValue = ref("");
+const phoneNumberValue = ref("");
+const passwordValue = ref("");
+const confirmPasswordValue = ref("");
+const router = useRouter()
+
+
+async function registerUser(){
+  try {
+    const response = await axios.post(
+        "http://localhost:7006/api/v1/users/signup",
+        {
+          firstName: firstNameValue.value,
+          lastName: lastNameValue.value,
+          email: emailValue.value,
+          phoneNumber: phoneNumberValue.value,
+          password: passwordValue.value,
+          confirmPassword: confirmPasswordValue.value
+        }, {headers: {
+          }})
+    console.log("res", response)
+    // const { first_name, last_name, id, role, email } = response.data.data;
+    // const user = { first_name, last_name, id, role, email };
+    // localStorage.setItem("token", response.data.data.token)
+    // localStorage.setItem("adminDetails", JSON.stringify(user))
+    // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
+    router.push({ name: "login" });
+  }
+  catch (error){
+    console.log(error)
+  }
+}
+
+
+
+
+
 </script>
 
 <template>
@@ -26,28 +66,28 @@ function toggleConfirm() {
         <div class="forms-layout">
           <div class="input-options">
             <label for="input">First Name</label>
-            <input type="text" class="form-input">
+            <input type="text" class="form-input" v-model="firstNameValue">
           </div>
           <div class="input-options">
             <label for="input">Last Name</label>
-            <input type="text" class="form-input">
+            <input type="text" class="form-input" v-model="lastNameValue">
           </div>
         </div>
         <div class="forms-layout">
           <div class="input-options">
             <label for="input">Email Address</label>
-            <input type="text" class="form-input">
+            <input type="text" class="form-input" v-model="emailValue">
           </div>
           <div class="input-options">
             <label for="input">Phone Number</label>
-            <input type="text" class="form-input">
+            <input type="text" class="form-input" v-model="phoneNumberValue">
           </div>
         </div>
         <div class="forms-layout">
           <div class="input-options">
             <label for="password">Password</label>
             <div class="password-field">
-              <input :type="passwordVisible ? 'text' : 'password'" class="form-input">
+              <input :type="passwordVisible ? 'text' : 'password'" class="form-input" v-model="passwordValue">
               <span class="password-toggle" @click="togglePassword">
                 <img src="../assets/icons/Eye.png" />
               </span>
@@ -56,7 +96,7 @@ function toggleConfirm() {
           <div class="input-options">
             <label for="confirmPassword">Confirm Password</label>
             <div class="password-field">
-              <input :type="passwordConfirm ? 'text' : 'password'" class="form-input">
+              <input :type="passwordConfirm ? 'text' : 'password'" class="form-input" v-model="confirmPasswordValue">
               <span class="password-toggle" @click="toggleConfirm">
                 <img src="../assets/icons/Eye.png" />
               </span>
@@ -64,7 +104,7 @@ function toggleConfirm() {
           </div>
         </div>
         <div class="btn">
-          <RouterLink to="/signin"><button>Sign Up</button></RouterLink>
+          <RouterLink to="/signin"><button @click="registerUser">Sign Up</button></RouterLink>
           <p>Already have an account? <RouterLink to="/signin" class="link">Sign In</RouterLink>
           </p>
         </div>

@@ -3,6 +3,7 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
 import { RouterLink } from 'vue-router'
 
 
+
 </script>
 
 <template>

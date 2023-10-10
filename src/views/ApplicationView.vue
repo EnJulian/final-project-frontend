@@ -2,53 +2,53 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import FormHeaderComponent from '../components/formHeaderComponent.vue';
-import {RouterLink} from "vue-router";
+import {RouterLink, useRouter} from "vue-router";
 
 
 // Define reactive data using ref
 const user = ref({
-    firstName: '',
-    lastName: '',
-    emailAddress: '',
-    dateOfBirth: '',
-    address: '',
-    university: '',
-    course: '',
-    cgpa: '',
-    cv: null,
-    photo: null,
+    firstNameValue: '',
+    lastNameValue: '',
+    emailAddressValue: '',
+    dateOfBirthValue: '',
+    addressValue: '',
+    universityValue: '',
+    courseValue: '',
+    cgpaValue: '',
+    cvValue: '',
+    photoValue: '',
 });
-
+const router = useRouter()
 // Define file input properties
 const fileInputs = ref({
-    cv: { accept: 'file_extension', label: 'Upload CV' },
-    img: { accept: 'image/*,.pdf', label: 'Upload Photo' },
+    cvValue: { accept: 'file_extension', label: 'Upload CV' },
+    imgValue: { accept: 'image/*,.pdf', label: 'Upload Photo' },
 });
 
 // Define form input properties
 const formInputs = ref({
-    firstName: { label: 'First Name', placeholder: '', readonly: true },
-    lastName: { label: 'Last Name', placeholder: '', readonly: true },
-    emailAddress: { label: 'Email', placeholder: '', readonly: true },
-    dateOfBirth: { label: 'Date of Birth', placeholder: 'dd/mm/yyyy', readonly: false },
-    address: { label: 'Address', placeholder: '', readonly: false },
-    university: { label: 'University', placeholder: '', readonly: false },
-    course: { label: 'Course of Study', placeholder: '', readonly: false },
-    cgpa: { label: 'CGPA', placeholder: '', readonly: false },
+  firstNameValue: { label: 'First Name', placeholder: '', readonly: true },
+  lastNameValue: { label: 'Last Name', placeholder: '', readonly: true },
+  emailAddressValue: { label: 'Email', placeholder: '', readonly: true },
+  dateOfBirthValue: { label: 'Date of Birth', placeholder: 'dd/mm/yyyy', readonly: false },
+  addressValue: { label: 'Address', placeholder: '', readonly: false },
+  universityValue: { label: 'University', placeholder: '', readonly: false },
+  courseValue: { label: 'Course of Study', placeholder: '', readonly: false },
+  cgpaValue: { label: 'CGPA', placeholder: '', readonly: false },
 });
 
 // Define error messages using ref
 const errors = ref({
-    firstName: '',
-    lastName: '',
-    emailAddress: '',
-    dateOfBirth: '',
-    address: '',
-    university: '',
-    course: '',
-    cgpa: '',
-    cv: '',
-    img: '',
+  firstNameValue: '',
+  lastNameValue: '',
+  emailAddressValue: '',
+  dateOfBirthValue: '',
+  addressValue: '',
+  universityValue: '',
+  courseValue: '',
+  cgpaValue: '',
+  cvValue: '',
+  photoValue: '',
 });
 
 const loading = ref(false);
@@ -61,44 +61,58 @@ const clearError = (key) => {
 
 // Create a function to handle file selection
 const selectFileOrImage = (event, key) => {
-    user.value[key] = event.target.files[0];
+  const file = event.target.files[0]; // Get the selected file
+
+  if (file) {
+    // If a file was selected, store its path in the user object
+    fileInputs.value[key] = URL.createObjectURL(file);
+  } else {
+    // If no file was selected, clear the path
+    fileInputs.value[key] = '';
+  }
 };
 
-// Create a function to create a user
-const createUser = async () => {
-    loading.value = true;
-    const formData = new FormData();
+async function apply(){
+  try {
+    const token = localStorage.getItem("token")
+    const userData = {
+      email: user.value.emailAddressValue,
+      image_url: fileInputs.value.imgValue,
+      first_name: user.value.firstNameValue,
+      last_name: user.value.lastNameValue,
+      cv_url: fileInputs.value.cvValue,
+      date_of_birth: user.value.dateOfBirthValue,
+      address: user.value.addressValue,
+      university: user.value.universityValue,
+      course: user.value.courseValue,
+      cgpa: user.value.cgpaValue,
+    };
 
-    for (const key in user.value) {
-        formData.append(key, user.value[key]);
-    }
-
-    try {
-        const token = localStorage.getItem('token');
-        const response = await axios.post('http://localhost:7009/api/v1/auth/application', formData, {
-            headers: {
-                Authorization: `Basic ${token}`,
-            },
-        });
-
-        localStorage.removeItem('token');
-        const { data } = response.data;
-        localStorage.setItem('token', data.token);
-        loading.value = false;
-
-        if (data.details.applicant) {
-            // Assuming you have a router instance set up
-            // Use this.$router.push('/dashboard') to navigate
-        } else {
-            // Assuming you have a router instance set up
-            // Use this.$router.push('/pre-dashboard') to navigate
+    console.log(fileInputs.value.cvValue, fileInputs.value.imgValue)
+    const response = await axios.post(
+        
+        "http://localhost:7006/api/v1/application/apply",
+        userData,
+        {
+          headers: {
+            authorization: token,
+          },
         }
-    } catch (err) {
-        loading.value = false;
-        error.value = err.response.data.message;
-    }
-};
+        
+    );
 
+    console.log("res", response)
+    const { email, image_url, first_name, last_name, cv_url, date_of_birth, address, university, course, cgpa, status, id, user_id } = response.data.data;
+    const userDetails = { email, image_url, first_name, last_name, cv_url, date_of_birth, address, university, course, cgpa, status, id, user_id };
+    localStorage.setItem("token", response.data.data.token)
+    localStorage.setItem("userApplicationDetails", JSON.stringify(userDetails))
+    // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
+    router.push({ name: "dashboard" });
+  }
+  catch (error){
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -107,7 +121,7 @@ const createUser = async () => {
         <div class="form-container">
             <div class="server-error" v-show="error"> {{ error }} </div>
             <div class="loader" v-if="loading"></div>
-            <form @submit.prevent="createUser" class="label-form">
+            <form @submit.prevent="apply" class="label-form">
                 <div class="uploads">
                     <div v-for="(input, key) in fileInputs" :key="key">
                         <input class="fileupload" type="file" :id="key" :name="key" :accept="input.accept"
@@ -125,7 +139,7 @@ const createUser = async () => {
                             <p v-show="errors[key]">{{ errors[key] }}</p>
                         </div>
                     </div>
-                    <button type="submit"> <RouterLink to="/dashboard" class="link">Submit</RouterLink></button>
+                    <button type="submit" @click="apply"> <RouterLink to="/dashboard" class="link">Submit</RouterLink></button>
                 </div>
             </form>
         </div>

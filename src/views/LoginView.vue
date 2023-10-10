@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import { RouterLink } from "vue-router";
+import axios from "axios";
+import { RouterLink, useRouter } from "vue-router";
 import FormHeaderComponent from '../components/formHeaderComponent.vue';
 
 // Define a reactive property to track the password visibility
@@ -11,6 +12,35 @@ function togglePassword() {
     passwordVisible.value = !passwordVisible.value;
 }
 
+
+
+const emailValue = ref("");
+const passwordValue = ref("");
+const router = useRouter()
+
+async function logUserin(){
+  try {
+    const token = localStorage.getItem("token")
+    const response = await axios.post(
+        "http://localhost:7006/api/v1/users/login",
+        {
+          email: emailValue.value,
+          password: passwordValue.value
+        }, {headers: {
+            authorization: token
+          }})
+    console.log("res", response)
+    const { first_name, last_name, id, role, email } = response.data.data;
+    const user = { first_name, last_name, id, role, email };
+    localStorage.setItem("token", response.data.data.token)
+    localStorage.setItem("userDetails", JSON.stringify(user))
+    // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
+    router.push({ name: "dashboard" });
+  }
+  catch (error){
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -21,19 +51,19 @@ function togglePassword() {
         <div class="forms">
             <div class="input-options">
                 <label for="input">Email Address</label>
-                <input type="text" class="form-input">
+                <input type="text" class="form-input" v-model="emailValue">
             </div>
             <div class="input-options">
                 <label for="password">Password</label>
                 <div class="password-field">
-                    <input :type="passwordVisible ? 'text' : 'password'" class="form-input">
+                    <input :type="passwordVisible ? 'text' : 'password'" class="form-input" v-model="passwordValue">
                     <span class="password-toggle" @click="togglePassword">
                         <img src="../assets/icons/Eye.png" />
                     </span>
                 </div>
             </div>
             <div class="btn">
-                <RouterLink to="/application"><button>Sign In</button></RouterLink>
+                <RouterLink to="/application"><button  @click="logUserin">Sign In</button></RouterLink>
                 <div class="btn-text">
                     <p>Don’t have an account yet? <RouterLink to="/register" class="link">Sign Up</RouterLink>
                     </p>

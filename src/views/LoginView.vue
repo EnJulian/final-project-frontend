@@ -1,159 +1,157 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 import { RouterLink } from "vue-router";
-import FormHeaderComponent from '../components/formHeaderComponent.vue';
+import FormHeaderComponent from "../components/formHeaderComponent.vue";
 
 // Define a reactive property to track the password visibility
 const passwordVisible = ref(false);
 
 // Function to toggle password visibility
 function togglePassword() {
-    passwordVisible.value = !passwordVisible.value;
+  passwordVisible.value = !passwordVisible.value;
 }
-
 </script>
 
 <template>
-
-    <section class="container">
-        <div class="header">
-        <FormHeaderComponent titles="Applicant Log in" />
-        <div class="forms">
-            <div class="input-options">
-                <label for="input">Email Address</label>
-                <input type="text" class="form-input">
-            </div>
-            <div class="input-options">
-                <label for="password">Password</label>
-                <div class="password-field">
-                    <input :type="passwordVisible ? 'text' : 'password'" class="form-input">
-                    <span class="password-toggle" @click="togglePassword">
-                        <img src="../assets/icons/Eye.png" />
-                    </span>
-                </div>
-            </div>
-            <div class="btn">
-                <RouterLink to="/application"><button>Sign In</button></RouterLink>
-                <div class="btn-text">
-                    <p>Don’t have an account yet? <RouterLink to="/register" class="link">Sign Up</RouterLink>
-                    </p>
-                    <h4>Forgot Password?</h4>
-                </div>
-            </div>
+  <section class="container">
+    <div class="header">
+      <FormHeaderComponent titles="Applicant Log in" />
+      <div class="forms">
+        <div class="input-options">
+          <label for="input">Email Address</label>
+          <input type="text" class="form-input" />
         </div>
+        <div class="input-options">
+          <label for="password">Password</label>
+          <div class="password-field">
+            <input :type="passwordVisible ? 'text' : 'password'" class="form-input" />
+            <span class="password-toggle" @click="togglePassword">
+              <img src="../assets/icons/Eye.png" />
+            </span>
+          </div>
         </div>
-    </section>
+        <div class="btn">
+          <RouterLink to="/application"><button>Sign In</button></RouterLink>
+          <div class="btn-text">
+            <p>
+              Don’t have an account yet?
+              <RouterLink to="/register" class="link">Sign Up</RouterLink>
+            </p>
+            <h4>Forgot Password?</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>
 .container {
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding-bottom: 69px;
-    margin-top: 70px;
-    border: #000 2px solid;
-    height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-bottom: 69px;
+  margin-top: 70px;
+  border: #000 2px solid;
+  height: 100vh;
 }
-
-
 
 .container p {
-    color: #2B3C4E;
-    font-family: 'Lato';
-    font-size: 24px;
-    font-style: italic;
-    font-weight: 500;
-    line-height: normal;
+  color: #2b3c4e;
+  font-family: "Lato";
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: normal;
 }
 
-  
 .forms {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
 }
 
 .input-options {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .input-options label {
-    color: #4F4F4F;
-    font-family: 'Lato';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  color: #4f4f4f;
+  font-family: "Lato";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .form-input {
-    border-radius: 4px;
-    border: 1.5px solid #BDBDBD;
-    width: 379px;
-    height: 48px;
-    padding: 20px;
+  border-radius: 4px;
+  border: 1.5px solid #bdbdbd;
+  width: 379px;
+  height: 48px;
+  padding: 20px;
 }
 
 /* / Additional CSS for the password toggle icon /  */
 .password-field {
-    position: relative;
+  position: relative;
 }
 
 .password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #000;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #000;
 }
 
 /* / Style the eye icon /  */
 .password-toggle img {
-    width: 18px;
+  width: 18px;
 }
 
 .btn {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 button {
-    padding: 16px 165px 14px 165px;
-    color: #FFF;
-    font-family: 'Lato';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    background: #7557D3;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
+  padding: 16px 165px 14px 165px;
+  color: #fff;
+  font-family: "Lato";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: #7557d3;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .btn-text {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn-text p,
 .btn-text h4 {
-    color: #4F4F4F;
-    font-family: 'Lato';
-    font-size: 14px;
-    font-style: italic;
-    font-weight: 400;
-    line-height: normal;
+  color: #4f4f4f;
+  font-family: "Lato";
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .btn-text a {
-    color: #1A2C56;
-}</style>
+  color: #1a2c56;
+}
+</style>

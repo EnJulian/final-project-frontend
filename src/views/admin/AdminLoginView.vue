@@ -1,37 +1,45 @@
 <script setup>
-import {ref} from 'vue';
-import { RouterLink, useRouter } from "vue-router";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 import axios from "axios";
 
-
 const emailValue = ref("");
 const passwordValue = ref("");
-    
+const wrongEmail = ref("");
+const wrongPasswordLength = ref("");
+const wrongPassword = ref("");
 
 const router = useRouter();
 
-
-
-async function logAdminin(){
+async function logAdminin() {
   try {
-    const token = localStorage.getItem("token")
-    const response = await axios.post("http://localhost:7006/api/v1/users/login", {
-      email: emailValue.value,
-      password: passwordValue.value
-    }, {headers: {
-      authorization: token
-      }})
-    console.log("res", response)
+    wrongPassword.value = passwordValue.value.length === 0 ? "Password cannot be empty" : "";
+    wrongEmail.value = !emailValue.value.includes("@") ? "Email address not valid!" : "";
+    wrongPasswordLength.value =
+      passwordValue.value.length < 8 ? "Password must be more than 8 characters!" : "";
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "http://localhost:7006/api/v1/users/login",
+      {
+        email: emailValue.value,
+        password: passwordValue.value,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    console.log("res", response);
     const { first_name, last_name, id, role, email } = response.data.data;
     const user = { first_name, last_name, id, role, email };
-    localStorage.setItem("token", response.data.data.token)
-    localStorage.setItem("adminDetails", JSON.stringify(user))
+    localStorage.setItem("token", response.data.data.token);
+    localStorage.setItem("adminDetails", JSON.stringify(user));
     // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
-    router.push({ name: "AdminDashboard" });
-  }
-  catch (error){
-    console.log(error)
+    await router.push({ name: "AdminDashboard" });
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -42,45 +50,50 @@ const passwordVisible = ref(false);
 function togglePassword() {
   passwordVisible.value = !passwordVisible.value;
 }
-
 </script>
 
 <template>
-    <div class="container">
-      <div class="main">
-        <img src="../../assets/icons/logo.png">
-        <p>Admin Log In</p>
-      </div>
+  <div class="container">
+    <div class="main">
+      <img src="../../assets/icons/logo.png" alt="" />
+      <p>Admin Log In</p>
+    </div>
 
-      <div class="forms">
-        <div class="input-options">
-          <label for="input">Email Address</label>
-          <input type="text" class="field-input" v-model="emailValue" >
+    <div class="forms">
+      <div class="input-options">
+        <label for="input">Email Address</label>
+        <input type="text" class="field-input" v-model="emailValue" />
+        <p v-show="wrongEmail">{{ wrongEmail }}</p>
+      </div>
+      <div class="input-options">
+        <label for="password">Password</label>
+        <div class="password-field">
+          <input
+            :type="passwordVisible ? 'text' : 'password'"
+            class="field-input"
+            v-model="passwordValue"
+          />
+          <span class="password-toggle" @click="togglePassword">
+            <img src="../../assets/icons/Eye.png" alt="show password" />
+          </span>
+          <p v-show="wrongPassword">{{ wrongPassword }}</p>
+          <p v-show="wrongPasswordLength">{{ wrongPasswordLength }}</p>
         </div>
-        <div class="input-options">
-          <label for="password">Password</label>
-          <div class="password-field">
-            <input :type="passwordVisible ? 'text' : 'password'" class="field-input" v-model="passwordValue">
-            <span class="password-toggle" @click="togglePassword">
-                            <img src="../../assets/icons/Eye.png" alt="show password"/>
-                        </span>
-          </div>
-        </div>
-        <div class="btn">
-<!--          <RouterLink to="/adminDashboard">-->
-            <button @click="logAdminin">Sign In</button>
-<!--          </RouterLink>-->
-        </div>
+      </div>
+      <div class="btn">
+        <!--          <RouterLink to="/adminDashboard">-->
+        <button @click="logAdminin">Sign In</button>
+        <!--          </RouterLink>-->
       </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
-
 .container {
   height: 100vh;
-  background-color: #7557D3;
-  background-image: url('../../assets/icons/bglogin.svg');
+  background-color: #7557d3;
+  background-image: url("../../assets/icons/bglogin.svg");
   background-repeat: no-repeat;
   background-position: right;
   background-size: contain;
@@ -100,7 +113,7 @@ function togglePassword() {
 }
 
 .main p {
-  color: #FFF;
+  color: #fff;
   font-family: Lato;
   font-size: 24px;
   font-style: italic;
@@ -124,7 +137,7 @@ function togglePassword() {
 
 .input-options label {
   color: #fff;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -133,7 +146,7 @@ function togglePassword() {
 
 .field-input {
   border-radius: 4px;
-  border: 1.5px solid #BDBDBD;
+  border: 1.5px solid #bdbdbd;
   width: 379px;
   height: 48px;
   background-color: transparent;
@@ -168,8 +181,8 @@ function togglePassword() {
 
 button {
   padding: 16px 165px 14px 165px;
-  color: #7557D3;
-  font-family: 'Lato';
+  color: #7557d3;
+  font-family: "Lato";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -179,6 +192,4 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-
-
 </style>

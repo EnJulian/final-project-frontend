@@ -15,7 +15,7 @@ const adminDetails = JSON.parse(adminDetailsLS);
                     <img class="profile-img" src="@/assets/icons/leftbanner.png" alt="profile picture" />
                     <div class="details">
                         <h1 class="profile-name">{{ adminDetails.first_name }} {{adminDetails.last_name}}</h1>
-                        <p mailto:class="profile-gmail">{{ adminDetails.email }}</p>
+                        <p class="profile-gmail">{{ adminDetails.email }}</p>
                     </div>
                 </div>
 
@@ -106,8 +106,7 @@ const adminDetails = JSON.parse(adminDetailsLS);
 .details {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-
+    justify-content: center; 
     gap: 5px;
     align-items: center;
 }

@@ -115,7 +115,7 @@ const correctAns = (value) => {
                     }" v-model="user.options.d" />
                 </div>
 
-                <p>{{ derror }}</p>
+                <p>{{ error }}</p>
             </div>
             <div class="btn-container">
                 <button class="btn-next" :disabled="index === 0" @click="previous()">Previous</button>

@@ -4,6 +4,10 @@ const selectedMinute = ref('');
 const selectedSeconds = ref('');
 
 const selectedTime = ref(null);
+const minutes = ref(Array.from({ length: 60 }, (_, i) => i + 1))
+
+
+
 const countries = ref([
   { name: 'USA' },
   { name: 'Canada' },
@@ -36,7 +40,7 @@ const countries = ref([
             <div class="select">
               <div class="seconds">
                 <select name="seconds" id="" v-model="selectedSeconds">
-                  <option :value="sec" v-for="(sec, index) in seconds" :key="index">
+                  <option :value="sec" v-for="(sec, index) in minutes" :key="index">
                     {{ sec }}
                   </option>
                 </select>
@@ -125,13 +129,6 @@ h4 {
     color: #2b3c4e;
 }
 
-h5 {
-    font-style: normal;
-    font-weight: 300;
-    font-size: 48px;
-    line-height: 58px;
-    color: #2b3c4e;
-}
 
 hr {
     width: 724px;

@@ -14,7 +14,7 @@ export const useDashboardStore = defineStore('dashboard', () => {
   
   async function adminLogin() {
     try {
-      const response = await axios.get(`http://localhost:7006/api/v1/users/login`)
+      const response = await axios.post(`http://localhost:7006/api/v1/users/login`)
       usersData.value = response.data;
     } catch (error) {
       console.error(error)

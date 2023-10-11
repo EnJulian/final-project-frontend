@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import FormHeaderComponent from "../components/formHeaderComponent.vue";
+import axios from "axios";
 
 // Define a reactive property to track the password visibility
 const passwordVisible = ref(false);
@@ -9,6 +10,45 @@ const passwordVisible = ref(false);
 // Function to toggle password visibility
 function togglePassword() {
   passwordVisible.value = !passwordVisible.value;
+}
+
+const emailValue = ref("");
+const passwordValue = ref("");
+const router = useRouter();
+const wrongEmail = ref("");
+const wrongPassword = ref("");
+const wrongPasswordLength = ref("");
+
+
+async function logUserIn() {
+  try {
+    wrongPassword.value = passwordValue.value.length === 0 ? "Password cannot be empty" : "";
+    wrongEmail.value = !emailValue.value.includes("@") ? "Email address not valid!" : "";
+    wrongPasswordLength.value =
+      passwordValue.value.length < 8 ? "Password must be more than 8 characters!" : "";
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "http://localhost:7006/api/v1/users/login",
+      {
+        email: emailValue.value,
+        password: passwordValue.value,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    console.log("res", response);
+    const { first_name, last_name, id, role, email } = response.data.data;
+    const user = { first_name, last_name, id, role, email };
+    localStorage.setItem("token", response.data.data.token);
+    localStorage.setItem("userDetails", JSON.stringify(user));
+    // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
+    await router.push({ name: "dashboard" });
+  } catch (error) {
+    console.log(error);
+  }
 }
 </script>
 
@@ -20,6 +60,7 @@ function togglePassword() {
         <div class="input-options">
           <label for="input">Email Address</label>
           <input type="text" class="form-input" />
+          <p v-show="wrongEmail">{{ wrongEmail }}</p>
         </div>
         <div class="input-options">
           <label for="password">Password</label>
@@ -28,10 +69,14 @@ function togglePassword() {
             <span class="password-toggle" @click="togglePassword">
               <img src="../assets/icons/Eye.png" />
             </span>
+            <p v-show="wrongPassword">{{ wrongPassword }}</p>
+            <p v-show="wrongPasswordLength">{{ wrongPasswordLength }}</p>
           </div>
         </div>
         <div class="btn">
-          <RouterLink to="/application"><button>Sign In</button></RouterLink>
+          <!--          <RouterLink to="/application">-->
+          <button @click="logUserIn">Sign In</button>
+          <!--          </RouterLink>-->
           <div class="btn-text">
             <p>
               Don’t have an account yet?

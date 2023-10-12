@@ -7,7 +7,6 @@ import axios from "axios";
 
 const emailValue = ref("");
 const passwordValue = ref("");
-    
 
 const router = useRouter();
 
@@ -16,7 +15,9 @@ const router = useRouter();
 async function logAdminin(){
   try {
     const token = localStorage.getItem("token")
-    const response = await axios.post("http://localhost:7006/api/v1/users/login", {
+    const response = await axios.post(
+      "http://localhost:7006/api/v1/users/login",
+      {
       email: emailValue.value,
       password: passwordValue.value
     }, {headers: {

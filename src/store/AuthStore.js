@@ -1,6 +1,6 @@
 ﻿import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import { post } from "../config/ApiService";
+import { post } from "@/config/ApiService";
 import { setToken } from "@/config/JwtService";
 
 export const useAuthStore = defineStore("auth", () => {

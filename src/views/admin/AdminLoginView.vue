@@ -7,8 +7,8 @@ import axios from "axios";
 
 const emailValue = ref("");
 const passwordValue = ref("");
-const router = useRouter()
 
+const router = useRouter();
 
 
 

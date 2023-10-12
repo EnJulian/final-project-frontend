@@ -14,13 +14,13 @@ const user = ref({
   universityValue: "",
   courseValue: "",
   cgpaValue: "",
-  cvValue: "",
+  cvValue: null,
   photoValue: "",
 });
 const router = useRouter();
 // Define file input properties
 const fileInputs = ref({
-  cvValue: { accept: "file_extension", label: "Upload CV" },
+  cvValue: { accept: "image/*,.pdf", label: "Upload CV" },
   imgValue: { accept: "image/*,.pdf", label: "Upload Photo" },
 });
 
@@ -60,35 +60,28 @@ const clearError = (key) => {
 
 // Create a function to handle file selection
 const selectFileOrImage = (event, key) => {
-  const file = event.target.files[0]; // Get the selected file
-
-  if (file) {
-    // If a file was selected, store its path in the user object
-    fileInputs.value[key] = URL.createObjectURL(file);
-  } else {
-    // If no file was selected, clear the path
-    fileInputs.value[key] = "";
-  }
+  fileInputs.value[key] = event.target.files[0];
 };
 
 async function apply() {
   try {
     const token = localStorage.getItem("token");
-    const userData = {
-      email: user.value.emailAddressValue,
-      image_url: fileInputs.value.imgValue,
-      first_name: user.value.firstNameValue,
-      last_name: user.value.lastNameValue,
-      cv_url: fileInputs.value.cvValue,
-      date_of_birth: user.value.dateOfBirthValue,
-      address: user.value.addressValue,
-      university: user.value.universityValue,
-      course: user.value.courseValue,
-      cgpa: user.value.cgpaValue,
-    };
+    
+    const formData = new FormData();
+    console.log(user.value.emailAddressValue);
+    formData.append("email", user.value.emailAddressValue);
+    // formData.set("image_url", fileInputs.value.imgValue);
+    // formData.set("first_name", user.value.firstNameValue);
+    // formData.set("last_name", user.value.lastNameValue);
+    // formData.set("cv_url", fileInputs.value.cvValue);
+    // formData.set("date_of_birth", user.value.dateOfBirthValue);
+    // formData.set("address", user.value.addressValue);
+    // formData.set("university", user.value.universityValue);
+    // formData.set("course", user.value.courseValue);
+    // formData.set("cgpa", user.value.cgpaValue);
 
-    console.log(fileInputs.value.cvValue, fileInputs.value.imgValue);
-    const response = await axios.post("http://localhost:7006/api/v1/application/apply", userData, {
+    console.log(formData);
+    const response = await axios.post("http://localhost:7006/api/v1/application/apply", formData, {
       headers: {
         authorization: token,
       },
@@ -141,7 +134,7 @@ async function apply() {
     <div class="form-container">
       <div class="server-error" v-show="error">{{ error }}</div>
       <div class="loader" v-if="loading"></div>
-      <form @submit.prevent="apply" class="label-form">
+      <form @submit.prevent="apply" class="label-form" enctype="multipart/form-data">
         <div class="uploads">
           <div v-for="(input, key) in fileInputs" :key="key">
             <input

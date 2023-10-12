@@ -16,7 +16,7 @@ export const useAuthStore = defineStore("auth", () => {
 
   // Actions
 
-  async function setAuth({token, ...user}) {
+  async function setAuth({ token, ...user }) {
     isAuthenticated.value = true;
     await setToken(token);
     user.value = user;
@@ -28,10 +28,10 @@ export const useAuthStore = defineStore("auth", () => {
 
   function login(payload) {
     post("/users/login", payload)
-      .then(async ({data}) => {
+      .then(async ({ data }) => {
         await setAuth(data.data);
       })
-      .catch(({response}) => {
+      .catch(({ response }) => {
         setError(response.data);
       });
   }

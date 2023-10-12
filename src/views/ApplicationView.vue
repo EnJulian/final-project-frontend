@@ -70,15 +70,15 @@ async function apply() {
     const formData = new FormData();
     console.log(user.value.emailAddressValue);
     formData.append("email", user.value.emailAddressValue);
-    // formData.set("image_url", fileInputs.value.imgValue);
-    // formData.set("first_name", user.value.firstNameValue);
-    // formData.set("last_name", user.value.lastNameValue);
-    // formData.set("cv_url", fileInputs.value.cvValue);
-    // formData.set("date_of_birth", user.value.dateOfBirthValue);
-    // formData.set("address", user.value.addressValue);
-    // formData.set("university", user.value.universityValue);
-    // formData.set("course", user.value.courseValue);
-    // formData.set("cgpa", user.value.cgpaValue);
+    formData.append("imageUrl", fileInputs.value.imgValue);
+    formData.append("firstName", user.value.firstNameValue);
+    formData.append("lastName", user.value.lastNameValue);
+    formData.append("cvUrl", fileInputs.value.cvValue);
+    formData.append("dateOfBirth", user.value.dateOfBirthValue);
+    formData.append("address", user.value.addressValue);
+    formData.append("university", user.value.universityValue);
+    formData.append("course", user.value.courseValue);
+    formData.append("cgpa", user.value.cgpaValue);
 
     console.log(formData);
     const response = await axios.post("http://localhost:7006/api/v1/application/apply", formData, {

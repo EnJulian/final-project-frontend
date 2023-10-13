@@ -1,3 +1,17 @@
+<script setup>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router'
+import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
+const router = useRouter()
+
+const people = ref([
+  { id: 1, batch: 'jack jack', date: '12 dec 2020', question: '30', time: '30 mins', status: 'taken' },
+  { id: 2, batch: 'Bongo', date: '12 dec 2020', question: '30', time: '30 mins', status: 'taken' },
+  { id: 3, batch: 'congo', date: '12 dec 2020', question: '30', time: '30 mins', status: 'taken' },
+]);
+
+</script>
+
 <template>
   <div class="container">
     <DashboardTitleComponent cardTitle="Assessment History" />
@@ -33,19 +47,7 @@
   </div>
 </template>
   
-<script setup>
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router'
-import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
-const router = useRouter()
 
-const people = ref([
-  { id: 1, batch: 'jack jack', date: '12 dec 2020', question: '30', time: '30 mins', status: 'taken' },
-  { id: 2, batch: 'Bongo', date: '12 dec 2020', question: '30', time: '30 mins', status: 'taken' },
-  { id: 3, batch: 'congo', date: '12 dec 2020', question: '30', time: '30 mins', status: 'taken' },
-]);
-
-</script>
   
 <style scoped>
 input {
@@ -71,13 +73,20 @@ table {
 thead{
   background-color: #2B3C4E;
     color: #fff;
+    margin-bottom: 20px;
+}
+tbody tr td{
+  margin-top: 20px;
 }
 
 
 .container {
   padding: 60px 47px;
 }
-
+th{
+    color: #fff;
+    padding: 14px 10px;
+}
 
 
 figure {

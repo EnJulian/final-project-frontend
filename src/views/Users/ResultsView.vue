@@ -26,7 +26,7 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
             </div>
             <div>
                 <button>
-                    <RouterLink class="links" to="/">Home</RouterLink>
+                    Home
                 </button>
             </div>
         </div>
@@ -76,7 +76,7 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 100px;
+    padding-top: 100px;
     gap: 21px;
 }
 
@@ -101,5 +101,7 @@ button {
     background-color: #7557D3;
     padding: 10px 80px;
     border: none;
+    border-radius: 4px;
+    color: #fff;
 }
 </style>

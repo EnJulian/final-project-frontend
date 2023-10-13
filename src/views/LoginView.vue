@@ -19,14 +19,21 @@ const router = useRouter();
 
 async function logUserin() {
   try {
-     await store.login({
+    await store.login({
       email: emailValue.value,
       password: passwordValue.value,
     });
 
-    if (store.isLoggedIn.value) {
-      alert("Login success");
-      await router.push({ name: "dashboard" });
+    if (store.isAuthenticated) {
+      // const hasApplication = await store.checkUserApplication(emailValue.value);
+      console.log(store.userData)
+      if (store.userData.isapplied) {
+        alert("Login success. You have an application!");
+        await router.push({ name: "dashboard" });
+      } else {
+        alert("Login success, but you don't have an application.");
+        await router.push({ name: "application" });
+      }
     } else {
       alert("Login failed");
     }

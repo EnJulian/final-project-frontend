@@ -1,9 +1,11 @@
 <script setup>
-import { ref } from 'vue';
+
+import { ref } from "vue";
+
+
 import { RouterLink, useRouter } from "vue-router";
 
 import axios from "axios";
-
 
 const emailValue = ref("");
 const passwordValue = ref("");
@@ -11,30 +13,27 @@ const passwordValue = ref("");
 const router = useRouter();
 
 
-
 async function logAdminin() {
   try {
-    const token = localStorage.getItem("token")
-    const response = await axios.post(
-      "http://localhost:7006/api/v1/users/login",
-      {
-        email: emailValue.value,
-        password: passwordValue.value
-      }, {
-        headers: {
-          authorization: token
-        }
-    })
-    console.log("res", response)
+    const response = await axios.post("http://localhost:7006/api/v1/users/login", {
+      email: emailValue.value,
+      password: passwordValue.value,
+    });
+
+    console.log("res", response);
+
+
     const { first_name, last_name, id, role, email } = response.data.data;
     const user = { first_name, last_name, id, role, email };
-    localStorage.setItem("token", response.data.data.token)
-    localStorage.setItem("adminDetails", JSON.stringify(user))
+    localStorage.setItem("adminToken", response.data.data.token);
+    localStorage.setItem("adminDetails", JSON.stringify(user));
+    
     // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
-    router.push({ name: "AdminDashboard" });
-  }
-  catch (error) {
-    console.log(error)
+
+    await router.push({ name: "AdminDashboard" });
+  } catch (error) {
+    console.log(error);
+
   }
 }
 
@@ -45,11 +44,11 @@ const passwordVisible = ref(false);
 function togglePassword() {
   passwordVisible.value = !passwordVisible.value;
 }
-
 </script>
 
 <template>
   <div class="container">
+
     <div class="wrapper">
       <div class="header">
         <img src="../../assets/icons/whiteLogo.svg">
@@ -74,7 +73,13 @@ function togglePassword() {
           
           <button @click="logAdminin">Sign In</button>
           
+
         </div>
+      </div>
+      <div class="btn">
+        <!--          <RouterLink to="/adminDashboard">-->
+        <button @click="logAdminin">Sign In</button>
+        <!--          </RouterLink>-->
       </div>
     </div>
   </div>
@@ -97,6 +102,10 @@ function togglePassword() {
   gap: 18px;
   padding-bottom: 35px;
 }
+
+
+.main p {
+  color: #fff;
 
 .wrapper {
   display: flex;
@@ -135,7 +144,7 @@ function togglePassword() {
 
 .input-options label {
   color: #fff;
-  font-family: 'Lato';
+  font-family: "Lato";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -144,7 +153,7 @@ function togglePassword() {
 
 .field-input {
   border-radius: 4px;
-  border: 1.5px solid #BDBDBD;
+  border: 1.5px solid #bdbdbd;
   width: 379px;
   height: 48px;
   background-color: transparent;
@@ -179,8 +188,8 @@ function togglePassword() {
 
 button {
   padding: 16px 165px 14px 165px;
-  color: #7557D3;
-  font-family: 'Lato';
+  color: #7557d3;
+  font-family: "Lato";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

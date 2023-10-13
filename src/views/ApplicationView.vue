@@ -3,12 +3,14 @@ import { ref } from "vue";
 import axios from "axios";
 import FormHeaderComponent from "../components/formHeaderComponent.vue";
 import { RouterLink, useRouter } from "vue-router";
+import {useAuthStore} from "@/store";
 
+const store = useAuthStore();
 // Define reactive data using ref
 const user = ref({
-  firstNameValue: "",
-  lastNameValue: "",
-  emailAddressValue: "",
+  firstNameValue: store.userData.first_name,
+  lastNameValue: store.userData.last_name,
+  emailAddressValue: store.userData.email,
   dateOfBirthValue: "",
   addressValue: "",
   universityValue: "",
@@ -17,6 +19,8 @@ const user = ref({
   cvValue: null,
   photoValue: "",
 });
+
+
 const router = useRouter();
 // Define file input properties
 const fileInputs = ref({
@@ -159,6 +163,7 @@ async function apply() {
                 :name="key"
                 v-model="user[key]"
                 :placeholder="input.placeholder"
+                :disabled="input.readonly"
               />
               <p v-show="errors[key]">{{ errors[key] }}</p>
             </div>

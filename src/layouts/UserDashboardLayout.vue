@@ -1,6 +1,11 @@
 <script setup>
 import { RouterLink, useRoute, RouterView } from 'vue-router';
+import {useAuthStore} from "@/store";
 const route = useRoute();
+const store = useAuthStore();
+const userDetailsLS = localStorage.getItem("userDetails")
+const userDetails = JSON.parse(userDetailsLS);
+
 </script>
 
 <template>
@@ -10,8 +15,8 @@ const route = useRoute();
         <div class="profilePart">
           <img class="profile-img" src="@/assets/icons/leftbanner.png" alt="profile picture" />
           <div class="details">
-            <h1 class="profile-name">Andy Cole</h1>
-            <p class="profile-gmail">cole@gmail.com</p>
+            <h1 class="profile-name">{{ userDetails.first_name }} {{ userDetails.last_name }}</h1>
+            <p class="profile-gmail">{{ userDetails.email }}</p>
           </div>
         </div>
 

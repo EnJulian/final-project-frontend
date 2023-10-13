@@ -60,7 +60,7 @@ function setPeople(data) {
 
 async function getAllApplicants() {
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
     const response = await axios.get("//localhost:7006/api/v1/application", {
       headers: { authorization: token },
     });

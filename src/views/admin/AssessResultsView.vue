@@ -1,9 +1,31 @@
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed, onMounted} from 'vue';
 import { useRouter } from 'vue-router';
 import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
+import axios from "axios";
 const router = useRouter()
 
+const results = ref([]);
+
+
+function setResults(data){
+  results.value = data
+}
+async function getAllResults() {
+  try {
+    const token = localStorage.getItem("adminToken");
+    const response = await axios.get("http://localhost:7006/api/v1/assessment/", {
+      headers: { authorization: token },
+    });
+    setResults(response.data.data);
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+}
+onMounted(async () => {
+  await getAllResults();
+});
 </script>
 
 <template>
@@ -36,16 +58,18 @@ const router = useRouter()
                   srcset=""></figure>
             </div>
           </th>
+          <th>Test Scores</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="t-row" v-for="person in sortedPeople" :key="person.id" @click="openMainModal">
-          <td>{{ person.name }} {{ person.email }}</td>
+        <tr class="t-row" v-for="person in results" :key="person.id" @click="openMainModal">
+          <td>{{ person.first_name }} {{ person.last_name }}</td>
           <td>{{ person.email }}</td>
-          <td>{{ person.age }}</td>
+          <td>{{ person.date_of_birth }}</td>
           <td>{{ person.address }}</td>
           <td>{{ person.university }}</td>
           <td>{{ person.cgpa }}</td>
+          <td>{{ person.test_scores }}</td>
         </tr>
       </tbody>
     </table>

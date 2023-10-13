@@ -35,7 +35,8 @@ export const useAuthStore = defineStore("auth", () => {
     return post("/users/login", payload)
       .then(async ({ data }) => {
         await setAuth(data.data);
-        // setUserData(data.data)
+        localStorage.removeItem('userDetails')
+        localStorage.setItem("userDetails", JSON.stringify(data.data));
         console.log(data.data)
       })
       .catch(({ response }) => {

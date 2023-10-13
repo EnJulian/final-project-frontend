@@ -1,7 +1,8 @@
 <script setup>
-import { ref } from 'vue';
-import { RouterLink } from "vue-router";
-import FormHeaderComponent from '../components/formHeaderComponent.vue';
+import formHeaderComponent from '../components/formHeaderComponent.vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 // Define a reactive property to track the password visibility
 const passwordVisible = ref(false);
@@ -15,56 +16,152 @@ function toggleConfirm() {
   passwordConfirm.value = !passwordConfirm.value;
 }
 
+// User form data
+const user = ref({
+  firstNameValue: '',
+  lastNameValue: '',
+  emailAddressValue: '',
+  phoneNumberValue: '',
+  passwordValue: '',
+  confirmPasswordValue: '',
+});
+const fnameError = ref("");
+const lastError = ref("");
+const emailError = ref("");
+const numberError = ref("");
+const passwordError = ref("");
+const confirmError = ref("");
+// const error = ref("");
+const router = useRouter(); // Vue Router instance
+
+
+const showError = (errorRef, message) => {
+  errorRef.value = message;
+  setTimeout(() => {
+    errorRef.value = '';
+  }, 15000); // Clear the error after 5 seconds (5000 milliseconds)
+};
+
+async function addApplicant() {
+  if (user.value.firstNameValue.length < 2) {
+    showError(fnameError, 'First name not valid');
+    console.log(fnameError)
+  }
+
+  if (user.value.lastNameValue.length < 2) {
+    showError(lastError, 'Last name not valid!');
+    console.log(lastError)
+  }
+
+  if (!user.value.emailAddressValue.includes('@')) {
+    showError(emailError, 'Email address not valid!');
+    console.log(emailError)
+  }
+
+  if (user.value.phoneNumberValue.length < 10) {
+    showError(numberError, 'Phone number not valid!');
+    console.log(numberError)
+  }
+
+  if (user.value.passwordValue.length < 8) {
+    showError(passwordError, 'Password must be more than 8 characters!');
+    console.log(passwordError)
+  }
+
+  if (user.value.passwordValue !== user.value.confirmPasswordValue) {
+    showError(confirmError, 'Confirm password must be the same as Password');
+    console.log(confirmError)
+  }
+  try {
+
+    const token = localStorage.getItem('token');
+    const response = await axios.post(
+      'http://localhost:7006/api/v1/users/signup',
+      {
+        first_name: user.value.firstNameValue,
+        last_name: user.value.lastNameValue,
+        email: user.value.emailAddressValue,
+        phone_number: user.value.phoneNumberValue,
+        password: user.value.passwordValue,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response);
+
+    const { first_name, last_name, email, phone_number, token: authToken } = response.data.data;
+    const userDetails = { first_name, last_name, email, phone_number };
+
+    localStorage.setItem('token', authToken);
+    localStorage.setItem('applicantDetails', JSON.stringify(userDetails));
+
+    await router.push({ name: 'login' });
+  } catch (error) {
+    console.error(error);
+    showError(error, 'Error occurred. Please try again later.'); // Show error for 5 seconds
+  }
+}
 </script>
+
+
 
 <template>
   <section>
 
     <div class="container">
-        <FormHeaderComponent titles="Applicant Sign up"/>
+        <formHeaderComponent titles="Applicant Sign up"/>
       <div class="forms">
         <div class="forms-layout">
           <div class="input-options">
             <label for="input">First Name</label>
-            <input type="text" class="form-input">
+            <input type="text" v-model="user.firstNameValue" class="form-input">
+            <p>{{ fnameError }}</p>
           </div>
           <div class="input-options">
             <label for="input">Last Name</label>
-            <input type="text" class="form-input">
+            <input type="text" v-model="user.lastNameValue" class="form-input">
+            <p>{{ lastError }}</p>
           </div>
         </div>
         <div class="forms-layout">
           <div class="input-options">
             <label for="input">Email Address</label>
-            <input type="text" class="form-input">
+            <input type="text" v-model="user.emailAddressValue" class="form-input">
+            <p>{{ emailError }}</p>
           </div>
           <div class="input-options">
             <label for="input">Phone Number</label>
-            <input type="text" class="form-input">
+            <input type="text" v-model="user.phoneNumberValue" class="form-input">
+            <p>{{ numberError }}</p>
           </div>
         </div>
         <div class="forms-layout">
           <div class="input-options">
             <label for="password">Password</label>
             <div class="password-field">
-              <input :type="passwordVisible ? 'text' : 'password'" class="form-input">
+              <input :type="passwordVisible ? 'text' : 'password'" v-model="user.passwordValue" class="form-input">
               <span class="password-toggle" @click="togglePassword">
                 <img src="../assets/icons/Eye.png" />
               </span>
             </div>
+            <p>{{ passwordError }}</p>
           </div>
           <div class="input-options">
             <label for="confirmPassword">Confirm Password</label>
             <div class="password-field">
-              <input :type="passwordConfirm ? 'text' : 'password'" class="form-input">
+              <input :type="passwordConfirm ? 'text' : 'password'" v-model="user.confirmPasswordValue" class="form-input">
               <span class="password-toggle" @click="toggleConfirm">
                 <img src="../assets/icons/Eye.png" />
               </span>
             </div>
+            <p>{{ confirmError }}</p>
           </div>
         </div>
         <div class="btn">
-          <RouterLink to="/signin"><button>Sign Up</button></RouterLink>
+          <button @click="addApplicant">Sign Up</button>
           <p>Already have an account? <RouterLink to="/signin" class="link">Sign In</RouterLink>
           </p>
         </div>

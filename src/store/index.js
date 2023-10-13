@@ -6,20 +6,33 @@ import axios from "axios";
 // import axios from 'axios'
 
 export const useDashboardStore = defineStore('dashboard', () => {
-  const usersData = ref([])
+  const applicants = ref([]);
+  const batches = ref([])
   // const countryData = ref([])
   // const countryName = ref('')
   // const selectedRegion = ref('');
   // const search = ref('')
-  
-  async function adminLogin() {
+
+  async function getApplicants() {
     try {
-      const response = await axios.get(`http://localhost:7006/api/v1/users/login`)
-      usersData.value = response.data;
-    } catch (error) {
-      console.error(error)
-    }
+      const token = localStorage.getItem("token");
+        let res = await axios.get("http://localhost:7006/api/v1/application", {
+          headers: {
+            Authorization: token,
+          },
+        });
+        applicants.value = res.data.data;
+        // return res;
+        console.log(res)
+      } catch (error) {
+        console.log(error);
+      }
   };
+
+  async
+
+ 
+  
 
   // async function getCountryData() {
   //   try {
@@ -58,7 +71,6 @@ export const useDashboardStore = defineStore('dashboard', () => {
   //  
   // });
 
-  return { adminLogin };
 
-  // return { search, countryData,updateCountry, countryName, getCountryData, countriesData, adminLogin, selectedRegion, filteredCountries };
+  return { applicants,  getApplicants};
 });

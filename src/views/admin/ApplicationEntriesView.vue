@@ -2,6 +2,7 @@
 import {ref, computed, onMounted} from 'vue';
 import ModalComponent from '../../components/ModalComponent.vue';
 import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
+import { useDashboardStore } from "../../store/index";
 import axios from "axios";
 
 const openmodal = ref(false);
@@ -58,18 +59,12 @@ function setPeople(data) {
   people.value = data
 }
 
-async function getAllApplicants() {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await axios.get("//localhost:7006/api/v1/application", {
-      headers: { authorization: token },
-    });
-    setPeople(response.data.data)
-    console.log(response)
-  } catch (error) {
-    console.log(error)
-  }
-}
+
+const dashboardStore = useDashboardStore()
+
+onMounted(() => {
+    dashboardStore.getApplicants()
+});
 
 /*
 * computed
@@ -96,6 +91,8 @@ onMounted(async () => {
       cardTitle="Entries - Batch 1"
       cardText="Comprises of all that applied for batch 1"
   />
+
+  {{ dashboardStore.applicants }}
       
         <table style="width: 100%">
             <thead >

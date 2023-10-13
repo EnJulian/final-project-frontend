@@ -1,9 +1,15 @@
 <script setup>
 import DashboardTitleComponent from '../../components/DashboardTitleComponent.vue';
-import { RouterLink } from 'vue-router'
+import { ref, onMounted } from 'vue'; 
+import { useDashboardStore } from "../../store/index";
 
+const dashboardStore = useDashboardStore()
 
+onMounted(() => {
+    dashboardStore.getApplicants()
+});
 </script>
+
 
 <template>
     <div class="container">
@@ -13,13 +19,13 @@ import { RouterLink } from 'vue-router'
         <div class="applicant-info">
             <div class="date">
                 <h5 class="date-title">Current Applications</h5>
-                <h3 class="text">312</h3>
+                <h3 class="text">{{ dashboardStore.applicants.length }}</h3>
                 <div class="line"></div>
                 <h6>Academy 2.0</h6>
             </div>
             <div class="date">
                 <h5 class="date-title">Total Applications</h5>
-                <h3 class="text">7000</h3>
+                <h3 class="text">{{ dashboardStore.applicants.length}}</h3>
                 <div class="line green"></div>
                 <h6>All entries so far</h6>
             </div>

@@ -106,7 +106,7 @@ function togglePassword() {
 
 .main p {
   color: #fff;
-
+}
 .wrapper {
   display: flex;
   flex-direction: column;

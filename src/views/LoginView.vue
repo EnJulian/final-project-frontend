@@ -79,8 +79,6 @@ async function logUserin() {
   align-items: center;
   justify-content: center;
   gap: 24px;
-  padding-bottom: 69px;
-  margin-top: 70px;
   border: #000 2px solid;
   height: 100vh;
 }

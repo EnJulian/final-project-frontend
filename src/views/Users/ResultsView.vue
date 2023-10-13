@@ -38,7 +38,7 @@ import DashboardTitleComponent from '../../components/DashboardTitleComponent.vu
 .container{
     height: 100vh;
     overflow-y: scroll;
-    padding: 60px 47px;
+    padding: 70px 47px;
 }
 .head {
     display: flex;

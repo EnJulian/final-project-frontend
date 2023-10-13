@@ -84,12 +84,13 @@ const showApproveModal = ref(false);
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 155vh;
+    height: 100vh;
     position: absolute;
     left: 0;
     top: 0;
     background: rgba(3, 17, 49, 0.2);
     backdrop-filter: blur(4px);
+    overflow-y: scroll;
 }
 
 

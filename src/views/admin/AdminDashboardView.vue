@@ -57,7 +57,7 @@ import { RouterLink } from 'vue-router'
 
                     <div>
                         <button disabled>
-                            <RouterLink class="links" to="/compose-assessment">Create Assessment</RouterLink>
+                            Create Assessment
                         </button>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ import { RouterLink } from 'vue-router'
 
 <style scoped>
 .container {
-    padding: 60px 47px;
+    padding: 70px 47px;
     display: flex;
     flex-direction: column;
     gap: 65px;
@@ -222,6 +222,8 @@ button {
     background-color: #B1B1B1;
     padding: 10px 40px;
     border: none;
+    color: #fff;
+    border-radius: 4px;
 }
 
 .batch-text{

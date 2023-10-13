@@ -58,33 +58,27 @@ async function registerUser(){
 </script>
 
 <template>
-  <section>
-
     <div class="container">
-        <FormHeaderComponent titles="Applicant Sign up"/>
+      <FormHeaderComponent titles="Applicant Sign up"/>
       <div class="forms">
-        <div class="forms-layout">
-          <div class="input-options">
+        <div class="form-groups">
+          <div class="input-group">
             <label for="input">First Name</label>
             <input type="text" class="form-input" v-model="firstNameValue">
           </div>
-          <div class="input-options">
+          <div class="input-group">
             <label for="input">Last Name</label>
             <input type="text" class="form-input" v-model="lastNameValue">
           </div>
-        </div>
-        <div class="forms-layout">
-          <div class="input-options">
+          <div class="input-group">
             <label for="input">Email Address</label>
             <input type="text" class="form-input" v-model="emailValue">
           </div>
-          <div class="input-options">
+          <div class="input-group">
             <label for="input">Phone Number</label>
             <input type="text" class="form-input" v-model="phoneNumberValue">
           </div>
-        </div>
-        <div class="forms-layout">
-          <div class="input-options">
+          <div class="input-group">
             <label for="password">Password</label>
             <div class="password-field">
               <input :type="passwordVisible ? 'text' : 'password'" class="form-input" v-model="passwordValue">
@@ -93,7 +87,7 @@ async function registerUser(){
               </span>
             </div>
           </div>
-          <div class="input-options">
+          <div class="input-group">
             <label for="confirmPassword">Confirm Password</label>
             <div class="password-field">
               <input :type="passwordConfirm ? 'text' : 'password'" class="form-input" v-model="confirmPasswordValue">
@@ -111,7 +105,6 @@ async function registerUser(){
 
       </div>
     </div>
-  </section>
 </template>
 
 <style scoped>
@@ -122,8 +115,6 @@ async function registerUser(){
   height: 100vh;
   justify-content: center;
   align-items: center;
-  padding-top: 160px;
-  margin-bottom: 240px;
 }
 
 
@@ -135,19 +126,18 @@ async function registerUser(){
   align-items: center;
   gap: 27px;
 }
-
-.forms-layout {
-  display: flex;
-  gap: 62px;
+.form-groups{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
 }
-
-.input-options {
+.input-group {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.input-options label {
+.input-group label {
   color: #4F4F4F;
   font-family: 'Lato';
   font-size: 14px;

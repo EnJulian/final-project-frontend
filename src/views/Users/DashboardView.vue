@@ -54,8 +54,7 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style scoped>
-.container {
-    
+.container { 
     display: flex;
     flex-direction: column;
     gap: 65px;
@@ -63,7 +62,7 @@ import { RouterLink } from 'vue-router'
     width: inherit;
     height: 100vh;
     overflow-y: scroll;
-    padding: 60px 47px;
+    padding: 70px 47px;
 }
 
 .applicant-info {
@@ -183,6 +182,8 @@ hr {
 button {
     background-color: #B1B1B1;
     padding: 10px 40px;
+    border-radius: 4px;
+    border: none;
 }
 
 p {

@@ -20,10 +20,8 @@ const router = useRouter()
           <th class="sorting">
             DOB - Age
             <div class="icons">
-              <figure class="btn" @click="ageAscending"><img src="../../assets/icons/sortup.svg" alt="sortup"
-                  srcset=""></figure>
-              <figure class="btn" @click="ageDescending"><img src="../../assets/icons/sortdown.svg" alt="sortdown"
-                  srcset=""></figure>
+              <img @click="ageAscending" src="../../assets/icons/sortup.svg" alt="sortup" srcset="">
+              <img @click="ageDescending" src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="">
             </div>
           </th>
           <th>Address</th>
@@ -31,11 +29,20 @@ const router = useRouter()
           <th class="sorting">
             CGPA
             <div class="icons">
-              <figure class="btn" @click="cgpaAscending"><img src="../../assets/icons/sortup.svg" alt="sortup" srcset=""></figure>
-              <figure class="btn" @click="cgpaDescending"><img src="../../assets/icons/sortdown.svg" alt="sortdown"
-                  srcset=""></figure>
+              <img @click="cgpaAscending" src="../../assets/icons/sortup.svg" alt="sortup" srcset="">
+              <img @click="cgpaDescending" src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="">
             </div>
           </th>
+          <th>
+            <div class="tests">
+              Test Scores
+              <div class="icons">
+                <img @click="cgpaAscending" src="../../assets/icons/sortup.svg" alt="sortup" srcset="">
+                <img @click="cgpaDescending" src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="">
+              </div>
+            </div>
+            </th>
+          
         </tr>
       </thead>
       <tbody>
@@ -45,6 +52,7 @@ const router = useRouter()
           <td>{{ person.age }}</td>
           <td>{{ person.address }}</td>
           <td>{{ person.university }}</td>
+          <td>{{ person.cgpa }}</td>
           <td>{{ person.cgpa }}</td>
         </tr>
       </tbody>
@@ -77,13 +85,25 @@ tr{
 th {
   padding: 0 10px;
   color: #fff;
-  /* padding: 14px 10px; */
+  padding: 14px 10px;
+  text-align: center;
+  font-family: 'Lato';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .sorting {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 4px;
+}
+.tests{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #FFF;
 }
 
 .icons {

@@ -57,7 +57,6 @@ import CardComponent from "../components/cardComponent.vue";
   align-items: center;
 }
   .wrapper{
-    /* padding: 10% 0 0 0; */
     position: absolute;
     top: 0;
     z-index: -700;

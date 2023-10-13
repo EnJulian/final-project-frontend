@@ -1,5 +1,8 @@
 <script setup>
+
 import { ref } from "vue";
+
+
 import { RouterLink, useRouter } from "vue-router";
 
 import axios from "axios";
@@ -8,6 +11,7 @@ const emailValue = ref("");
 const passwordValue = ref("");
 
 const router = useRouter();
+
 
 async function logAdminin() {
   try {
@@ -18,15 +22,18 @@ async function logAdminin() {
 
     console.log("res", response);
 
+
     const { first_name, last_name, id, role, email } = response.data.data;
     const user = { first_name, last_name, id, role, email };
     localStorage.setItem("adminToken", response.data.data.token);
     localStorage.setItem("adminDetails", JSON.stringify(user));
     
     // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
+
     await router.push({ name: "AdminDashboard" });
   } catch (error) {
     console.log(error);
+
   }
 }
 
@@ -41,27 +48,32 @@ function togglePassword() {
 
 <template>
   <div class="container">
-    <div class="main">
-      <img src="../../assets/icons/logo.png" />
-      <p>Admin Log In</p>
-    </div>
 
-    <div class="forms">
-      <div class="input-options">
-        <label for="input">Email Address</label>
-        <input type="text" class="field-input" v-model="emailValue" />
+    <div class="wrapper">
+      <div class="header">
+        <img src="../../assets/icons/whiteLogo.svg">
+        <p>Admin Log In</p>
       </div>
-      <div class="input-options">
-        <label for="password">Password</label>
-        <div class="password-field">
-          <input
-            :type="passwordVisible ? 'text' : 'password'"
-            class="field-input"
-            v-model="passwordValue"
-          />
-          <span class="password-toggle" @click="togglePassword">
-            <img src="../../assets/icons/Eye.png" alt="show password" />
-          </span>
+
+      <div class="forms">
+        <div class="input-options">
+          <label for="input">Email Address</label>
+          <input type="text" class="field-input" v-model="emailValue">
+        </div>
+        <div class="input-options">
+          <label for="password">Password</label>
+          <div class="password-field">
+            <input :type="passwordVisible ? 'text' : 'password'" class="field-input" v-model="passwordValue">
+            <span class="password-toggle" @click="togglePassword">
+              <img src="../../assets/icons/eyew.svg" alt="show password" />
+            </span>
+          </div>
+        </div>
+        <div class="btn">
+          
+          <button @click="logAdminin">Sign In</button>
+          
+
         </div>
       </div>
       <div class="btn">
@@ -76,28 +88,39 @@ function togglePassword() {
 <style scoped>
 .container {
   height: 100vh;
-  background-color: #7557d3;
-  background-image: url("../../assets/icons/bglogin.svg");
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: contain;
+  background-color: #7557D3;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.main {
+.header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding-top: 225px; */
-  gap: 24px;
-  padding-bottom: 69px;
+  gap: 18px;
+  padding-bottom: 35px;
 }
+
 
 .main p {
   color: #fff;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+  background-image: url('../../assets/icons/bglogin.svg');
+  height: 524px;
+}
+
+.header p {
+  color: #FFF;
   font-family: Lato;
   font-size: 24px;
   font-style: italic;

@@ -70,7 +70,7 @@ function previousQuestion() {
         <input type="radio" name="answers" id=""><label> {{ option }} </label>
       </div>
     </div>
-    <div class="btn1">
+    <div class="next-btn-container">
       <button class="previous" @click="previousQuestion" :disabled="currentQuestionIndex === 0">
         Previous
       </button>
@@ -79,8 +79,8 @@ function previousQuestion() {
       </button>
     </div>
     <div class="btn-container">
-      <RouterLink to="/results"><button class="finish" @click="finishAssessment"
-          :disabled="!isLastQuestion">Finish</button></RouterLink>
+      <button class="finish" @click="finishAssessment"
+          :disabled="!isLastQuestion">Finish</button>
     </div>
 
   </div>
@@ -88,7 +88,7 @@ function previousQuestion() {
 
 <style scoped>
 .container{
-  padding: 60px 47px;
+  padding: 70px 47px;
   height: 100vh;
 }
 .header {
@@ -162,7 +162,7 @@ function previousQuestion() {
   flex-direction: column;
   max-width: 500px;
   margin: 0 auto;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 .checkboxes input[type="radio"] {
   cursor: pointer;
@@ -183,7 +183,7 @@ input[type="radio"]:checked {
   align-items: center;
 }
 
-.btn1 {
+.next-btn-container {
   padding-top: 66px;
   display: flex;
   justify-content: center;
@@ -201,7 +201,7 @@ input[type="radio"]:checked {
   background: #fff;
   stroke-width: 1px;
   stroke: rgba(0, 0, 0, 0.25);
-  padding: 10px 31px 11px 32px;
+  padding: 10px 31px 10px 32px;
   border-radius: 4px;
 }
 button{
@@ -217,7 +217,7 @@ button{
   background: #7557D3;
   border: none;
   border-radius: 4px;
-  padding: 10px 44px 11px 46px;
+  padding: 10px 44px 10px 46px;
 }
 
 .btn-container {

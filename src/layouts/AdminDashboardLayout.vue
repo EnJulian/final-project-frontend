@@ -15,7 +15,7 @@ const adminDetails = JSON.parse(adminDetailsLS);
                     <img class="profile-img" src="@/assets/icons/leftbanner.png" alt="profile picture" />
                     <div class="details">
                         <h1 class="profile-name">{{ adminDetails.first_name }} {{adminDetails.last_name}}</h1>
-                        <p mailto:class="profile-gmail">{{ adminDetails.email }}</p>
+                        <p class="profile-gmail">{{ adminDetails.email }}</p>
                     </div>
                 </div>
 
@@ -69,14 +69,16 @@ const adminDetails = JSON.parse(adminDetailsLS);
 .sideNavigation {
     width: 292px;
     height: 100vh;
-    overflow-y: scroll;
     font-family: 'Lato';
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0px 5px 15px rgba(33, 31, 38, 0.05);
+    overflow: hidden;
+}
+.sideNavigation:hover{
+    overflow-y: scroll;
 
 }
-
 .layoutPart {
     display: grid;
     grid-template-columns: 1fr 11fr;

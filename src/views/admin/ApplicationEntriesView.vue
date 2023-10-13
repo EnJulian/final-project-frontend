@@ -24,11 +24,11 @@ const closeModal = () => {
   openmodal.value = false;
 };
 
-// const people = ref([
-//     { id: 1, name: 'jack jack', age: 12, email: 'jack@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 2.54 },
-//     { id: 2, name: 'Bongo', age: 13, email: 'bongo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.54 },
-//     { id: 3, name: 'congo', age: 14, email: 'congo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.24 },
-// ]);
+const people = ref([
+    { id: 1, name: 'jack jack', age: 12, email: 'jack@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 2.54 },
+    { id: 2, name: 'Bongo', age: 13, email: 'bongo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.54 },
+    { id: 3, name: 'congo', age: 14, email: 'congo@mail.com', address: '21 adom str.', university: 'University of Lagos', cgpa: 3.24 },
+]);
 
 const sortedPeople = computed(() => {
   return [...people.value].sort((a, b) => a.age - b.age || a.cgpa - b.cgpa);
@@ -48,7 +48,10 @@ const cgpaDescending = () => {
   people.value.sort((a, b) => b.cgpa - a.cgpa);
 };
 
+
 const people = ref([]);
+
+
 
 /*
  * methods
@@ -87,6 +90,7 @@ onMounted(async () => {
 </script>
 
 <template>
+
   <div class="container">
     <ModalComponent @close="closeModal" v-show="openmodal" class="main-modal" />
 
@@ -100,28 +104,20 @@ onMounted(async () => {
         <tr>
           <th>Name</th>
           <th>Email</th>
-          <th class="sorting">
-            DOB - Age
-            <div class="icons">
-              <button class="btn" @click="ageAscending">
-                <img src="../../assets/icons/sortup.svg" alt="sortup" srcset="" />
-              </button>
-              <button class="btn" @click="ageDescending">
-                <img src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="" />
-              </button>
-            </div>
-          </th>
+         <th class="sorting">
+                        DOB - Age
+                        <div class="icons">
+                            <img @click="ageAscending" src="../../assets/icons/sortup.svg" alt="sortup" srcset="">
+                            <img @click="ageDescending" src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="">
+                        </div>
+                    </th>
           <th>Address</th>
           <th>University</th>
           <th class="sorting">
             CGPA
             <div class="icons">
-              <button class="btn" @click="cgpaAscending">
-                <img src="../../assets/icons/sortup.svg" alt="sortup" srcset="" />
-              </button>
-              <button class="btn" @click="cgpaDescending">
-                <img src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="" />
-              </button>
+                            <img @click="cgpaAscending" src="../../assets/icons/sortup.svg" alt="sortup" srcset="">
+                            <img @click="cgpaDescending" src="../../assets/icons/sortdown.svg" alt="sortdown" srcset="">
             </div>
           </th>
         </tr>
@@ -138,6 +134,7 @@ onMounted(async () => {
       </tbody>
     </table>
   </div>
+
 </template>
 
 <style scoped>
@@ -198,7 +195,9 @@ td {
   border: #7557d3 1px solid;
 }
 img {
+    cursor: pointer;
 }
+
 
 .main-modal {
   position: absolute;

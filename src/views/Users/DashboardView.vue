@@ -92,15 +92,16 @@ onMounted(async () =>{
 </template>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 65px;
-  font-family: "Lato";
-  width: inherit;
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 60px 47px;
+.container { 
+    display: flex;
+    flex-direction: column;
+    gap: 65px;
+    font-family: 'Lato';
+    width: inherit;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: 70px 47px;
+
 }
 
 .applicant-info {
@@ -210,8 +211,11 @@ hr {
 }
 
 button {
-  background-color: #b1b1b1;
-  padding: 10px 40px;
+
+    background-color: #B1B1B1;
+    padding: 10px 40px;
+    border-radius: 4px;
+    border: none;
 }
 
 p {

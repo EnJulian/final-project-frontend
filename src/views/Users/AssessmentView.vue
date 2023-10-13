@@ -32,8 +32,7 @@
                 </button>
             </div>
         </div>
-        <div class="body-section">
-        </div>
+        
     </div>
 </template>
 <style scoped>
@@ -94,5 +93,6 @@
         background-color: #B1B1B1;
         padding: 10px 40px;
         border: none;
+        border-radius: 4px;
     }
 </style> 

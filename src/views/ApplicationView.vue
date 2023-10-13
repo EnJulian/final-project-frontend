@@ -169,7 +169,7 @@ async function apply() {
             </div>
           </div>
           <button type="submit" @click="apply">
-            <RouterLink to="/dashboard" class="link">Submit</RouterLink>
+            Submit
           </button>
         </div>
       </form>
@@ -178,27 +178,6 @@ async function apply() {
 </template>
 
 <style scoped>
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-  margin-left: 100px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 .loader {
   position: absolute;
   top: 400px;
@@ -207,11 +186,11 @@ async function apply() {
   border-radius: 50%;
   width: 100px;
   height: 100px;
-  animation: spin 2s linear infinite;
+  animation: roll 2s linear infinite;
   z-index: 3;
 }
 
-@keyframes spin {
+@keyframes roll {
   0% {
     transform: rotate(0deg);
   }

@@ -75,6 +75,7 @@ async function saveEdit() {
 </script>
 
 <template>
+
   <div class="container">
     <div class="profile">
       <h1>Profiles Setting</h1>

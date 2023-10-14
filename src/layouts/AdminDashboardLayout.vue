@@ -81,7 +81,7 @@ const adminDetails = JSON.parse(adminDetailsLS);
 }
 .layoutPart {
     display: grid;
-    grid-template-columns: 1fr 11fr;
+    grid-template-columns: 1fr 1fr;
     width: 100vh;
 }
 

@@ -13,7 +13,8 @@ const deadlineValue = ref("");
 
 async function createApplication() {
   try {
-    const token = localStorage.getItem("token");
+    const successMessage = ref(""); 
+    const token = localStorage.getItem("adminToken");
     const response = await axios.post(
       "http://localhost:7006/api/v1/application",
       {
@@ -31,10 +32,13 @@ async function createApplication() {
     console.log("res", response);
     const { batch_id, link, deadline, instructions } = response.data.data;
     const appDetails = { batch_id, link, deadline, instructions };
-    localStorage.setItem("token", response.data.data.token);
+    localStorage.setItem("adminToken", response.data.data.token);
     localStorage.setItem("applicationDetails", JSON.stringify(appDetails));
     // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
-    router.push({ name: "AdminDashboard" });
+    
+
+    successMessage.value = "Application created successfully!";
+    console.log(successMessage)
   }
   catch (error) {
     console.log(error);
@@ -46,6 +50,7 @@ async function createApplication() {
   <div class="container">
     <DashboardTitleComponent cardTitle="Create Application" />
     <form class="forms">
+      <p class="msg" v-show="successMessage">{{ successMessage }}</p>
       <div class="form-container">
         <div class="form-group">
           <label class="file-label" for="file"> + Choose file</label>
@@ -57,7 +62,7 @@ async function createApplication() {
         </div>
         <div class="form-group">
           <label class="labels">Application closure date</label>
-          <input class="form-input" type="text" placeholder="dd/mm/yyyy" v-model="deadlineValue" />
+          <input class="form-input" type="date" placeholder="dd/mm/yyyy" v-model="deadlineValue" />
         </div>
         <div class="form-group">
           <label class="labels">Batch ID</label>
@@ -66,7 +71,8 @@ async function createApplication() {
       </div>
       <div class="form-group box3">
         <label class="labels">Instructions</label>
-        <input class="text-area" name="" id="" v-model="instructionsValue" />
+        <!-- <input class="text-area" name="" id="" v-model="instructionsValue" /> -->
+        <textarea class="text-area" name="" id="" cols="30" rows="10" v-model="instructionsValue"></textarea>
       </div>
       <div class="btn-container" type="submit">
         <button @click="createApplication">Submit</button>
@@ -76,6 +82,11 @@ async function createApplication() {
 </template>
 
 <style scoped>
+.msg{
+  width: 100%;
+  background-color: #31D283;
+  color: #fff;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -123,7 +134,7 @@ async function createApplication() {
   width: 100%;
   border-radius: 4px;
   margin-top: 5px;
-  padding-left: 10px;
+  padding: 10px 10px;
 }
 
 .labels {

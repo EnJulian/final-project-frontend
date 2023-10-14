@@ -4,7 +4,7 @@
             <h1>Profiles Setting</h1>
             <button>Edit</button>
         </div>
-        <form @submit.prevent="save()">
+        <form>
             <div class="image">
                 <img src="../assets/icons/propic.svg" alt="profile image" srcset="" />
                 <div class="label-form">

@@ -70,16 +70,8 @@ function togglePassword() {
           </div>
         </div>
         <div class="btn">
-          
           <button @click="logAdminin">Sign In</button>
-          
-
         </div>
-      </div>
-      <div class="btn">
-        <!--          <RouterLink to="/adminDashboard">-->
-        <button @click="logAdminin">Sign In</button>
-        <!--          </RouterLink>-->
       </div>
     </div>
   </div>
@@ -103,9 +95,6 @@ function togglePassword() {
   padding-bottom: 35px;
 }
 
-
-.main p {
-  color: #fff;
 
 .wrapper {
   display: flex;

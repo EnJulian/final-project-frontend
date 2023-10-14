@@ -52,7 +52,7 @@ const previous = () => {
 const finish = () => {
     const token = localStorage.getItem('admin-token');
     axios
-        .post('http://localhost:3000/api/v1/auth/create-assessment', questions.value, {
+        .post('http://localhost:7006/api/v1/assessment', questions.value, {
             headers: {
                 Authorization: `Basic ${token}`,
             },

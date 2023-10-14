@@ -12,7 +12,7 @@ const selectedSeconds = ref('');
         <hr />
         <h4>Set Time</h4>
 
-        <form @submit.prevent="save()">
+        <form>
         <div class="time">
           <div class="select">
             <div class="minute">
@@ -48,13 +48,6 @@ const selectedSeconds = ref('');
 
 
 <style scoped>
-.datalist-table{
-    /* border: 10px black solid; */
-    padding: 10px;
-}
-#countries{
-    display: none;
-}
 .time {
   display: flex;
   gap: 0 40px;

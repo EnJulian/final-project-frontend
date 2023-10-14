@@ -1,59 +1,95 @@
 <script setup>
-import { ref } from 'vue';
-const selectedMinute = ref('');
-const selectedSeconds = ref('');
+import { ref, computed } from "vue";
+import axios from "axios";
+const selectedMinute = ref("");
+const selectedSeconds = ref("");
 
+const getMinutes = computed(() => {
+  let minutesArray = [];
+  for (let i = 0; i <= 60; i++) {
+    if (i < 10) {
+      i = i.toString().padStart(2, "0");
+    }
+    minutesArray.push(i);
+  }
+  return minutesArray;
+});
+const getSeconds = computed(() => {
+  let secondsArray = [];
+  for (let i = 0; i <= 60; i++) {
+    i = i.toString().padStart(3, "0");
+    secondsArray.push(i);
+  }
+  return secondsArray;
+});
 
+async function updateTime() {
+  const token = localStorage.getItem("adminToken");
+  const timerInSeconds = Number(selectedMinute.value * 60) + Number(selectedSeconds.value);
+  try {
+    const response = await axios.patch(
+      `http://localhost:7006/api/v1/users/update/${adminDetails.id}`,
+      {
+        time_allocated: timerInSeconds,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    console.log("res", response);
+  } catch (error) {
+    console.log(error);
+  }
+}
 </script>
 
 <template>
-    <div class="container">
-        <h3>Timer Setting</h3>
-        <hr />
-        <h4>Set Time</h4>
+  <div class="container">
+    <h3>Timer Setting</h3>
+    <hr />
+    <h4>Set Time</h4>
 
-        <form @submit.prevent="save()">
-        <div class="time">
-          <div class="select">
-            <div class="minute">
-              <select name="minute" id="" v-model="selectMinute">
-                <option :value="min" v-for="(min, index) in minutes" :key="index">
-                  {{ min }}
-                </option>
-              </select>
-            </div>
-            <div class="min">
-              <p>min</p>
-            </div>
+    <form @submit.prevent="save()">
+      <div class="time">
+        <div class="select">
+          <div class="minute">
+            <select name="minute" id="" v-model="selectMinute">
+              <option :value="min" v-for="(min, index) in getMinutes" :key="index">
+                {{ min }}
+              </option>
+            </select>
           </div>
-          <div class="select">
-            <div class="seconds">
-              <select name="seconds" id="" v-model="selectSeconds">
-                <option :value="sec" v-for="(sec, index) in seconds" :key="index">
-                  {{ sec }}
-                </option>
-              </select>
-            </div>
-            <div class="sec">
-              <p>sec</p>
-            </div>
+          <div class="min">
+            <p>min</p>
           </div>
         </div>
-        <button type="submit">Save</button>
-      </form>
-    </div>
+        <div class="select">
+          <div class="seconds">
+            <select name="seconds" id="" v-model="selectSeconds">
+              <option :value="sec" v-for="(sec, index) in getSeconds" :key="index">
+                {{ sec }}
+              </option>
+            </select>
+          </div>
+          <div class="sec">
+            <p>sec</p>
+          </div>
+        </div>
+      </div>
+      <button @click="updateTime" type="submit">Save</button>
+    </form>
+  </div>
 </template>
 
-
-
-
 <style scoped>
-.datalist-table{
-    /* border: 10px black solid; */
-    padding: 10px;
+.datalist-table {
+  /* border: 10px black solid; */
+  padding: 10px;
 }
-#countries{
-    display: none;
+#countries {
+  display: none;
 }
 .time {
   display: flex;
@@ -115,24 +151,24 @@ hr {
   grid-template-areas: "minute";
   align-items: center;
 }
-  select {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    padding: 0 1em 0 0;
-    margin: 0;
-    font-family: inherit;
-    font-weight: 300;
-    font-size: 45px;
-    cursor: inherit;
-    line-height: inherit;
-    outline: none;
-  }
-    option {
-      color: #000;
-      font-size: 16px;
-    }
- 
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 45px;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+option {
+  color: #000;
+  font-size: 16px;
+}
+
 .minute::after,
 .seconds::after {
   content: url("../assets/icons/Polygon.svg");

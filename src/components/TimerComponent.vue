@@ -26,9 +26,10 @@ const getSeconds = computed(() => {
 async function updateTime() {
   const token = localStorage.getItem("adminToken");
   const timerInSeconds = Number(selectedMinute.value * 60) + Number(selectedSeconds.value);
+  console.log(timerInSeconds);
   try {
-    const response = await axios.patch(
-      `http://localhost:7006/api/v1/users/update/${adminDetails.id}`,
+    const response = await axios.post(
+      "http://localhost:7006/api/v1/timer/",
       {
         time_allocated: timerInSeconds,
       },
@@ -51,12 +52,11 @@ async function updateTime() {
     <hr />
     <h4>Set Time</h4>
 
-
     <form @submit.prevent="save()">
       <div class="time">
         <div class="select">
           <div class="minute">
-            <select name="minute" id="" v-model="selectMinute">
+            <select name="minute" id="" v-model="selectedMinute">
               <option :value="min" v-for="(min, index) in getMinutes" :key="index">
                 {{ min }}
               </option>
@@ -68,7 +68,7 @@ async function updateTime() {
         </div>
         <div class="select">
           <div class="seconds">
-            <select name="seconds" id="" v-model="selectSeconds">
+            <select name="seconds" id="" v-model="selectedSeconds">
               <option :value="sec" v-for="(sec, index) in getSeconds" :key="index">
                 {{ sec }}
               </option>
@@ -85,7 +85,6 @@ async function updateTime() {
 </template>
 
 <style scoped>
-
 .datalist-table {
   /* border: 10px black solid; */
   padding: 10px;

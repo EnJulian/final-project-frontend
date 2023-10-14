@@ -62,7 +62,6 @@ onMounted(async () => {
           <p class="subtext">Last Update 18:24, 22/08/22</p>
         </div>
 
-
         <div class="card-content">
           <div class="batches">
             <p class="batch-text">Academy Batch 1</p>
@@ -77,11 +76,8 @@ onMounted(async () => {
           <p>Create test question for an incoming academy students</p>
 
           <div>
-            <button disabled>
-              Create Assessment
-            </button>
+            <button disabled>Create Assessment</button>
           </div>
-
         </div>
       </div>
     </div>
@@ -90,13 +86,11 @@ onMounted(async () => {
 
 <style scoped>
 .container {
-    padding: 70px 47px;
-    display: flex;
-    flex-direction: column;
-    gap: 65px;
-    font-family: 'Lato';
-
-
+  padding: 70px 47px;
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+  font-family: "Lato";
 }
 
 .applicant-info {
@@ -235,31 +229,30 @@ hr {
 }
 
 button {
-
-    background-color: #B1B1B1;
-    padding: 10px 40px;
-    border: none;
-    color: #fff;
-    border-radius: 4px;
+  background-color: #b1b1b1;
+  padding: 10px 40px;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
 }
 
-.batch-text{
-    color: #4F4F4F;
-text-align: center;
-font-family: 'Nunito Sans';
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+.batch-text {
+  color: #4f4f4f;
+  text-align: center;
+  font-family: "Nunito Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
-.batches{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 8px;
-    padding: 15px 0px;
-    margin-top: 20px;
-    background-color: #fff;
+.batches {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 8px;
+  padding: 15px 0px;
+  margin-top: 20px;
+  background-color: #fff;
 }
 
 .batches:hover {

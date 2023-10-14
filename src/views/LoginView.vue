@@ -26,7 +26,7 @@ async function logUserin() {
 
     if (store.isAuthenticated) {
       // const hasApplication = await store.checkUserApplication(emailValue.value);
-      console.log(store.userData)
+      console.log(store.userData);
       if (store.userData.isapplied) {
         alert("Login success. You have an application!");
         await router.push({ name: "dashboard" });
@@ -37,6 +37,10 @@ async function logUserin() {
     } else {
       alert("Login failed");
     }
+    // const { first_name, last_name, id, role, email } = store.userData;
+    // const user = { first_name, last_name, id, role, email };
+    // localStorage.setItem("userToken", store.userData.token);
+    // localStorage.setItem("userDetails", JSON.stringify(user));
   } catch (error) {
     console.log(error);
   }
@@ -86,7 +90,6 @@ async function logUserin() {
   align-items: center;
   justify-content: center;
   gap: 24px;
-  border: #000 2px solid;
   height: 100vh;
 }
 

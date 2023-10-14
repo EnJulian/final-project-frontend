@@ -20,9 +20,8 @@ export const useAuthStore = defineStore("auth", () => {
     userData.value = { ...user };
     isAuthenticated.value = true;
     await setToken(token);
-    
   }
-  
+
   // function setUserData(data){
   //   userData.value = data
   // }
@@ -35,13 +34,13 @@ export const useAuthStore = defineStore("auth", () => {
     return post("/users/login", payload)
       .then(async ({ data }) => {
         await setAuth(data.data);
-        localStorage.removeItem('userDetails')
+        localStorage.removeItem("userDetails");
         localStorage.setItem("userDetails", JSON.stringify(data.data));
-        console.log(data.data)
+        console.log(data.data);
       })
       .catch(({ response }) => {
         setError(response.data);
-        console.log(response.data)
+        console.log(response.data);
       });
   }
 

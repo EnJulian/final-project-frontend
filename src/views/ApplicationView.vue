@@ -125,7 +125,7 @@ async function apply() {
     localStorage.setItem("token", response.data.data.token);
     localStorage.setItem("userApplicationDetails", JSON.stringify(userDetails));
     // const adminDetails = JSON.parse(localStorage.getItem("adminDetails"))   when you want to get admin details
-    router.push({ name: "dashboard" });
+    router.push({ name: "login" });
   } catch (error) {
     console.log(error);
   }

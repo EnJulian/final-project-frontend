@@ -49,7 +49,7 @@ const cgpaDescending = () => {
 };
 
 
-// const people = ref([]);
+const people = ref([]);
 
 
 

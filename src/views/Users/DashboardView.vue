@@ -2,45 +2,42 @@
 import DashboardTitleComponent from "../../components/DashboardTitleComponent.vue";
 import { RouterLink } from "vue-router";
 import axios from "axios";
-import {onMounted, ref} from "vue";
-
+import { onMounted, ref } from "vue";
 
 const applicationData = ref({});
-function setApplicationData(data){
-  applicationData.value = data
+function setApplicationData(data) {
+  applicationData.value = data;
 }
 
-function formatDate(dateString){
+function formatDate(dateString) {
   // Create a Date object from the input string
   const date = new Date(dateString);
 
-// Get the day, month, and year components
-  const day = date.getUTCDate().toString().padStart(2, '0');
-  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Note: Month is zero-based
+  // Get the day, month, and year components
+  const day = date.getUTCDate().toString().padStart(2, "0");
+  const month = (date.getUTCMonth() + 1).toString().padStart(2, "0"); // Note: Month is zero-based
   const year = date.getUTCFullYear().toString().slice(-2);
 
-  return `${year}.${month}.${day}`
+  return `${year}.${month}.${day}`;
 }
 
 async function someOtherFunction() {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
   try {
     const response = await axios.get("http://localhost:7006/api/v1/application/check", {
       headers: {
-        authorization: token
-      }
+        authorization: token,
+      },
     });
-    console.log(response.data.data)
-    setApplicationData(response.data.data[0])
-    
-    
+    console.log(response.data.data);
+    setApplicationData(response.data.data[0]);
   } catch (error) {
     console.log(error);
   }
 }
-onMounted(async () =>{
-  await someOtherFunction()
-} )
+onMounted(async () => {
+  await someOtherFunction();
+});
 </script>
 
 <template>
@@ -92,16 +89,15 @@ onMounted(async () =>{
 </template>
 
 <style scoped>
-.container { 
-    display: flex;
-    flex-direction: column;
-    gap: 65px;
-    font-family: 'Lato';
-    width: inherit;
-    height: 100vh;
-    overflow-y: scroll;
-    padding: 70px 47px;
-
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 65px;
+  font-family: "Lato";
+  width: inherit;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 70px 47px;
 }
 
 .applicant-info {
@@ -211,11 +207,10 @@ hr {
 }
 
 button {
-
-    background-color: #B1B1B1;
-    padding: 10px 40px;
-    border-radius: 4px;
-    border: none;
+  background-color: #b1b1b1;
+  padding: 10px 40px;
+  border-radius: 4px;
+  border: none;
 }
 
 p {
